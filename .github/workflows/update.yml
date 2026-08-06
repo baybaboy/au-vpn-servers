@@ -39,10 +39,12 @@ jobs:
         with:
           name: debug
           path: |
-            servers.txt
-            servers.json
-            page.html
-            page.png
+            path: |
+  servers.txt
+  servers.json
+  Records.json
+  page.html
+  page.png
           if-no-files-found: ignore
 
       - name: Commit updated server files
