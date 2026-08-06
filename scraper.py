@@ -32,7 +32,11 @@ with sync_playwright() as p:
             r = requests.get(link, timeout=20, allow_redirects=True)
 
             print("Final URL:", r.url)
-            print(r.text[:500])
+            print("=" * 50)
+print("Final URL:", r.url)
+print("Content-Type:", r.headers.get("Content-Type"))
+print(r.text[:500])
+print("=" * 50)
 
             with open("download.txt", "w", encoding="utf-8") as f:
                 f.write(r.text)
