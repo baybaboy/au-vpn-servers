@@ -63,30 +63,30 @@ servers = sorted(set(servers))
 with open("servers.txt", "w", encoding="utf-8") as f:
     f.write("\n".join(servers))
 
-# Build JSON
-json_servers = []
+# Build Records.json
+records = []
 
 for server in servers:
     ip, port = server.split(":")
-    json_servers.append({
-        "ip": ip,
-        "port": int(port),
-        "country": "Australia",
-        "protocol": "TCP",
-        "status": "online"
+
+    records.append({
+        "LOCATION": "Australia",
+        "HOSTNAME": ip,
+        "PORT": int(port),
+        "UPTIME": "100%",
+        "PING": "20",
+        "FLAG": "AU",
+        "SESSIONS": 0,
+        "LINE_QUALITY": "Excellent",
+        "SCORE": 100
     })
 
-data = {
-    "last_updated": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-    "total_servers": len(json_servers),
-    "servers": json_servers
-}
-
-with open("servers.json", "w", encoding="utf-8") as f:
-    json.dump(data, f, indent=4)
+# Save Records.json
+with open("Records.json", "w", encoding="utf-8") as f:
+    json.dump(records, f, indent=4)
 
 print("\n===================================")
-print(f"Working servers: {len(servers)}")
+print(f"Working servers: {len(records)}")
 print("Created servers.txt")
-print("Created servers.json")
+print("Created Records.json")
 print("Done!")
