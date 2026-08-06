@@ -41,7 +41,7 @@ with sync_playwright() as p:
             servers.append(f"{server}:{port}")
             print("FOUND:", f"{server}:{port}")
 
-browser.close()
+
 
 servers = sorted(set(servers))
 
