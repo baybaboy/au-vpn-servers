@@ -21,7 +21,10 @@ with sync_playwright() as p:
         try:
             print("Checking:", link)
 
-            r = requests.get(link, timeout=20)
+            r = requests.get(link, timeout=20, allow_redirects=True)
+
+print("Final URL:", r.url)
+print(r.text[:500])
 
             # Find "remote server port"
             m = re.search(r"remote\s+([^\s]+)\s+(\d+)", r.text)
