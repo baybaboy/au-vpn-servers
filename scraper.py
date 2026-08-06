@@ -35,7 +35,11 @@ with sync_playwright() as p:
     for link in links:
         print(f"\nOpening: {link}")
 
-        page.goto(link, wait_until="networkidle")
+        try:
+    page.goto(link, wait_until="domcontentloaded", timeout=10000)
+except:
+    print(f"Skipping timeout: {link}")
+    continue
 
         page_html = page.content()
 
