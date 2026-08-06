@@ -13,15 +13,15 @@ with sync_playwright() as p:
     html = page.content()
 
     # Find download links
-download_links = sorted(set(re.findall(r'/download/\d+/', html)))
+    download_links = sorted(set(re.findall(r'/download/\d+/', html)))
 
-download_links = [
-    "https://publicvpnlist.com" + link
-    for link in download_links
-]
+    download_links = [
+        "https://publicvpnlist.com" + link
+        for link in download_links
+    ]
 
-print(f"Found {len(download_links)} download links")
-print(download_links)
+    print(f"Found {len(download_links)} download links")
+    print(download_links)
 
     servers = []
 
