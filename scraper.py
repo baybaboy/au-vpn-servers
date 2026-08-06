@@ -1,5 +1,6 @@
 from playwright.sync_api import sync_playwright
 import re
+import os
 
 URL = "https://publicvpnlist.com/country/australia/"
 
@@ -7,48 +8,62 @@ servers = []
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
-    page = browser.new_page()
+    context = browser.new_context(accept_downloads=True)
+    page = context.new_page()
 
     page.goto(URL, wait_until="networkidle")
 
-    html = page.content()
+    # Find every download page
+    links = page.locator("a[href*='/download/']").evaluate_all(
+        "els => els.map(e => e.href)"
+    )
 
-    # Find download links
-    download_links = sorted(set(re.findall(r'/download/\d+/', html)))
-    download_links = [
-        "https://publicvpnlist.com" + link
-        for link in download_links
-    ]
+    links = sorted(set(links))
 
-    print(f"Found {len(download_links)} download links")
+    print(f"Found {len(links)} download pages")
 
-    for link in download_links:
-        print("Opening:", link)
+    for link in links:
+        try:
+            print("Opening:", link)
 
-        page.goto(link, wait_until="networkidle")
+            page.goto(link, wait_until="networkidle")
 
-        text = page.content()
+            # Find the actual download button
+            button = page.locator("a[href$='.ovpn'], a.download, a.btn")
 
-        # Save the page for debugging
-        with open("page.html", "w", encoding="utf-8") as f:
-            f.write(text)
+            if button.count() == 0:
+                print("No download button found")
+                continue
 
-        # Print the first 1000 characters
-        print("=" * 60)
-        print(text[:1000])
-        print("=" * 60)
+            with page.expect_download() as download_info:
+                button.first.click()
 
-        m = re.search(r"remote\s+([^\s]+)\s+(\d+)", text)
+            download = download_info.value
 
-        if m:
-            server = m.group(1)
-            port = m.group(2)
-            servers.append(f"{server}:{port}")
-            print("FOUND:", f"{server}:{port}")
+            path = download.path()
+
+            if not path:
+                print("Download failed")
+                continue
+
+            with open(path, "r", encoding="utf-8", errors="ignore") as f:
+                config = f.read()
+
+            m = re.search(r"^remote\s+(\S+)\s+(\d+)", config, re.MULTILINE)
+
+            if m:
+                server = f"{m.group(1)}:{m.group(2)}"
+                print("FOUND:", server)
+                servers.append(server)
+
+        except Exception as e:
+            print("ERROR:", e)
+
+    browser.close()
 
 servers = sorted(set(servers))
 
 with open("servers.txt", "w", encoding="utf-8") as f:
     f.write("\n".join(servers))
 
-print(f"Found {len(servers)} servers")
+print(f"Saved {len(servers)} servers")
