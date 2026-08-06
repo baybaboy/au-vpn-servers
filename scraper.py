@@ -14,6 +14,8 @@ with sync_playwright() as p:
 
     # Find download links
     download_links = sorted(set(re.findall(r'https://publicvpnlist\.com/download/\d+/', html)))
+    print(f"Found {len(download_links)} download links")
+print(download_links)
 
     servers = []
 
