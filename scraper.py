@@ -13,10 +13,11 @@ with sync_playwright() as p:
 
     html = page.content()
 
+    # Find download links
     download_links = sorted(set(re.findall(r'/download/\d+/', html)))
     download_links = [
-        "https://publicvpnlist.com" + x
-        for x in download_links
+        "https://publicvpnlist.com" + link
+        for link in download_links
     ]
 
     print(f"Found {len(download_links)} download links")
@@ -28,11 +29,15 @@ with sync_playwright() as p:
 
         text = page.content()
 
-        # Save first page for debugging
+        # Save the page for debugging
         with open("page.html", "w", encoding="utf-8") as f:
             f.write(text)
 
-        # Look for an OpenVPN config
+        # Print the first 1000 characters
+        print("=" * 60)
+        print(text[:1000])
+        print("=" * 60)
+
         m = re.search(r"remote\s+([^\s]+)\s+(\d+)", text)
 
         if m:
@@ -41,11 +46,9 @@ with sync_playwright() as p:
             servers.append(f"{server}:{port}")
             print("FOUND:", f"{server}:{port}")
 
-
-
 servers = sorted(set(servers))
 
-with open("servers.txt", "w") as f:
+with open("servers.txt", "w", encoding="utf-8") as f:
     f.write("\n".join(servers))
 
 print(f"Found {len(servers)} servers")
