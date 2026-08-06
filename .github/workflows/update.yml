@@ -13,44 +13,44 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-  - name: Show files
-    run: |
-      pwd
-      ls -la
-      find .
+      - name: Show files
+        run: |
+          pwd
+          ls -la
+          find .
 
-  - name: Set up Python
-    uses: actions/setup-python@v5
-    with:
-      python-version: "3.11"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-  - name: Install dependencies
-    run: |
-      pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
 
-  - name: Install Playwright
-    run: |
-      playwright install chromium
+      - name: Install Playwright
+        run: |
+          playwright install chromium
 
-  - name: Run scraper
-    run: |
-      python scraper.py
+      - name: Run scraper
+        run: |
+          python scraper.py
 
-  - name: Upload debug files
-    uses: actions/upload-artifact@v4
-    with:
-      name: debug
-      path: |
-        page.html
-        page.png
+      - name: Upload debug files
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug
+          path: |
+            page.html
+            page.png
 
-  - name: Commit changes
-    run: |
-      git config user.name "github-actions"
-      git config user.email "github-actions@github.com"
-      git add .
-      git diff --cached --quiet || git commit -m "Update servers"
-      git push
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .
+          git diff --cached --quiet || git commit -m "Update servers"
+          git push
