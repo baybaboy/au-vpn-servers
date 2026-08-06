@@ -1,0 +1,728 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+    <meta name="fo-verify" content="80c821a5-13c7-4610-84eb-75cc25af2c7c" />
+	<meta name="google-adsense-account" content="ca-pub-6554239609071794">
+	<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+	<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+	<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+	<link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+	<link rel="preconnect" href="https://tpc.googlesyndication.com" crossorigin>
+	<style>html.pvl-home-ads-suppressed .pvl-ad{display:none!important}</style>
+	<script>
+  (function () {
+    function homeAdsAllowed() {
+      var host = String(window.location.hostname || '').toLowerCase();
+      var path = String(window.location.pathname || '/').replace(/\/index\.php$/i, '/');
+      if ((host !== 'publicvpnlist.com' && host !== 'www.publicvpnlist.com') || path !== '/') {
+        return true;
+      }
+
+      var storageKey = 'pvl_home_page_views_v1';
+      var cookieName = 'pvl_home_page_views_v1';
+      var views = 0;
+      try {
+        views = parseInt(window.localStorage.getItem(storageKey) || '0', 10) || 0;
+        views = Math.min(Math.max(views, 0) + 1, 3);
+        window.localStorage.setItem(storageKey, String(views));
+      } catch (storageError) {
+        var match = document.cookie.match(new RegExp('(?:^|; )' + cookieName + '=(\\d+)'));
+        views = match ? (parseInt(match[1], 10) || 0) : 0;
+        views = Math.min(Math.max(views, 0) + 1, 3);
+        document.cookie = cookieName + '=' + views + '; Max-Age=31536000; Path=/; SameSite=Lax; Secure';
+      }
+
+      return views > 2;
+    }
+
+    window.__pvlAdsAllowed = homeAdsAllowed();
+    if (!window.__pvlAdsAllowed) {
+      document.documentElement.classList.add('pvl-home-ads-suppressed');
+    }
+
+    function loadScript(src, attrs) {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = src;
+      if (attrs) {
+        Object.keys(attrs).forEach(function (key) { s.setAttribute(key, attrs[key]); });
+      }
+      document.head.appendChild(s);
+    }
+	    function loadMarketingScripts() {
+	      if (window.__pvlMarketingLoaded) return;
+	      window.__pvlMarketingLoaded = true;
+	      window.dataLayer = window.dataLayer || [];
+	      window.gtag = window.gtag || function(){ dataLayer.push(arguments); };
+		      loadScript('https://www.googletagmanager.com/gtag/js?id=G-8ZKG8BLW1T', { crossorigin: 'anonymous' });
+	      window.gtag('js', new Date());
+	      window.gtag('config', 'G-8ZKG8BLW1T');
+	      if (window.__pvlAdsAllowed) {
+	        loadScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6554239609071794', { crossorigin: 'anonymous' });
+	      }
+	    }
+	    loadMarketingScripts();
+  })();
+</script>
+
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Australia OpenVPN .ovpn download</title>
+	    	      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="robots" content="noindex,follow" />
+<meta name="description" content="Download a checked Australia OpenVPN .ovpn file after reviewing the selected public VPN server details." />
+	    	    
+<link rel="canonical" href="https://publicvpnlist.com/download/948683/" />
+<link rel="alternate" hreflang="en" href="https://publicvpnlist.com/download/948683/" />
+<link rel="alternate" hreflang="x-default" href="https://publicvpnlist.com/download/948683/" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="PublicVPNList" />
+<meta property="og:title" content="Australia OpenVPN .ovpn download" />
+<meta property="og:description" content="Download a checked Australia OpenVPN .ovpn file after reviewing the selected public VPN server details." />
+<meta property="og:url" content="https://publicvpnlist.com/download/948683/" />
+<meta property="og:image" content="https://publicvpnlist.com/og-publicvpnlist.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="PublicVPNList checked VPN dataset and network monitoring" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Australia OpenVPN .ovpn download" />
+<meta name="twitter:description" content="Download a checked Australia OpenVPN .ovpn file after reviewing the selected public VPN server details." />
+<meta name="twitter:image" content="https://publicvpnlist.com/og-publicvpnlist.jpg" />
+
+	   <link rel="icon" href="/favicon.ico" sizes="any" />
+	   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	   <link rel="shortcut icon" href="/favicon.ico" />
+	   <meta name="theme-color" content="#245ccf" />
+
+	   	   <link rel="stylesheet" href="/local/templates/vpn/assets/style.css?v=1785743961" />
+
+ 
+
+</head>
+<body>
+       <header class="topnav-wrap" data-nosnippet>
+    <nav class="topnav" aria-label="Main">
+      <a class="brand" href="/">
+        <img src="/favicon.svg" alt="" width="28" height="28" loading="eager">
+        <div class="site-title">PublicVPNList</div>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainMenu">Menu</button>
+      <div class="menu" id="mainMenu">
+        <a href="/" class="">Servers</a>
+        <a href="/countries/" class="">Countries</a>
+        <a href="/download-vpn-list/" class="">Download</a>
+        <a href="/guides/" class="">Guides</a>
+        <a href="/what-is-my-ip/" class="">Tools</a>
+        <details class="menu-more">
+          <summary class="">More</summary>
+          <div class="menu-more-links">
+            <a href="/api/">API</a>
+            <a href="/exports/">Exports</a>
+            <a href="/sources/">Sources</a>
+            <a href="/status/">Status</a>
+            <a href="/methodology/">Methodology</a>
+            <a href="/about/">About</a>
+            <a href="/contacts/">Contacts</a>
+            <a href="/vless/">VLESS catalog</a>
+            <a href="/how-we-check-vpn-servers/">How checks work</a>
+          </div>
+        </details>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="/">PublicVPNList</a>
+  <span class="sep">/</span>
+      <a href="/country/australia/">Australia</a>
+    <span class="sep">/</span>
+    <span>Download .ovpn</span>
+</nav>
+
+<div class="panel download-panel" id="downloadPage"
+  data-id="948683"
+  data-filename="australia-101.188.56.82-tcp1785.ovpn"
+  data-download-code="australia"
+  data-download-country="Australia"
+  data-download-host="101.188.56.82"
+  data-download-ip="101.188.56.82"
+  data-download-speed="0.49"
+  data-download-latency="401"
+  data-download-proto="TCP"
+  data-download-port="1785"
+  data-download-source="AutoOVPN"
+  data-download-checked="2026-08-06T07:30:35Z">
+  <div class="download-header">
+    <h1>Download .ovpn profile</h1>
+          <p class="muted">Australia · 101.188.56.82 · TCP 1785<br>Last catalog check: 26 min ago</p>
+      <p class="download-warning">Public endpoint. Use for testing and low-risk browsing only. Review the .ovpn profile before connecting.</p>
+              <div class="download-primary-actions" style="margin:10px 0 12px">
+        <button class="btn primary download-normal" id="downloadCurrentCheckBtn" type="button" aria-label="Run current check for Australia OpenVPN server 101.188.56.82">Run current check</button>
+        <a class="btn secondary" href="/" data-action="try-another-server">Try another server</a>
+      </div>
+      </div>
+
+      <div class="download-hero-grid">
+      <div class="download-timer-card">
+        <h2>Check current availability first</h2>
+        <p class="muted">Network-tested only. The server operator and logging policy are not verified.</p>
+        <ol class="download-progress" aria-label="Download progress">
+          <li class="is-active"><strong>Run current check</strong><span>Confirm current reachability</span></li>
+          <li><strong>Generate temporary .ovpn link</strong><span>Create a short-lived file URL</span></li>
+          <li><strong>Download and verify</strong><span>Inspect, import and test DNS/IP</span></li>
+        </ol>
+        <div class="muted" id="dlStatus" aria-live="polite">Server selected. Run a current check to generate a temporary .ovpn link.</div>
+        <div class="download-error" id="dlError" role="alert" hidden></div>
+        <div class="download-ready" id="downloadReady" hidden>
+          <p><strong>Download configuration</strong></p>
+          <dl class="download-metrics">
+            <div><dt>Filename</dt><dd id="downloadFilename">australia-101.188.56.82-tcp1785.ovpn</dd></div>
+            <div><dt>File size</dt><dd id="downloadFileSize">Unknown until download starts</dd></div>
+            <div><dt>Link expires at</dt><dd id="downloadExpires">Generated after current check</dd></div>
+          </dl>
+          <div class="chips" style="margin-top:12px">
+            <a class="btn primary download-normal" id="dlReadyLink" href="#" rel="nofollow" aria-label="Download Australia OpenVPN profile for 101.188.56.82">Download .ovpn file</a>
+            <a class="btn secondary" href="/" data-action="try-another-server">Download another profile</a>
+            <button class="btn secondary" type="button" id="dlRegenerate" hidden>Generate a new link</button>
+          </div>
+          <div class="chips" style="margin-top:10px">
+            <a class="chip" href="/setup-openvpn-windows/">Setup guide</a>
+            <a class="chip" href="/what-is-my-ip/">Verify my IP</a>
+            <a class="chip" href="/dns-leak-test/">Run a DNS leak test</a>
+          </div>
+          <div class="article" style="margin-top:12px">
+            <h2>Next safety steps</h2>
+            <ol>
+              <li>Import into a trusted OpenVPN client.</li>
+              <li>Confirm the remote host and protocol.</li>
+              <li>Connect.</li>
+              <li>Check visible IP.</li>
+              <li>Run a DNS leak test.</li>
+              <li>Remove the profile after testing if you do not plan to reuse it.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+            <div class="download-server-card">
+        <h2>Selected server</h2>
+        <div class="download-server-title">
+          <span class="flag" aria-hidden="true">🇦🇺</span>          <strong>Australia</strong>
+        </div>
+        <dl class="download-metrics">
+          <div><dt>Speed</dt><dd>0.5 Mbps</dd></div>
+          <div><dt>Latency</dt><dd>401 ms</dd></div>
+          <div><dt>Protocol</dt><dd>TCP</dd></div>
+          <div><dt>Checked</dt><dd>Aug 6, 2026</dd></div>
+        </dl>
+        <div class="download-endpoint">
+          <span>Endpoint</span>
+          <a class="server-detail-link" href="/server/948683/" aria-label="View details for Australia OpenVPN server 101.188.56.82"><code>101.188.56.82:1785</code></a>
+        </div>
+      </div>
+          </div>
+  
+          <section class="pvl-trust-card pvl-trust-card--download" aria-label="Public VPN safety note">
+          <div class="pvl-trust-intro">
+            <p class="pvl-kicker">Technical check ≠ privacy guarantee</p>
+            <h2>PublicVPNList checks network signals, not the VPN operator.</h2>
+          </div>
+          <details class="pvl-trust-details">
+            <summary>Read safety details</summary>
+            <div class="pvl-trust-details__content">
+              <div class="pvl-trust-grid">
+                <div>
+                  <strong>Checked by PublicVPNList</strong>
+                  <span>Reachability</span>
+                  <span>Speed</span>
+                  <span>Latency</span>
+                  <span>Config availability</span>
+                  <span>Last successful check</span>
+                </div>
+                <div>
+                  <strong>Not verified</strong>
+                  <span>VPN operator identity</span>
+                  <span>Logging policy</span>
+                  <span>Jurisdiction</span>
+                  <span>Long-term privacy</span>
+                  <span>Content filtering or traffic handling</span>
+                </div>
+              </div>
+              <p class="pvl-trust-footnote">Use public VPN endpoints for testing, routing checks and low-risk browsing only. Review every .ovpn profile before connecting.</p>
+            </div>
+          </details>
+        </section>
+        
+  <section class="download-help">
+    <h2>What happens next?</h2>
+    <div class="download-note-grid">
+      <div><strong>Short-lived link</strong><span>The generated URL expires quickly and can be regenerated after another check.</span></div>
+      <div><strong>Review the profile</strong><span>Inspect the remote host, protocol, port and DNS options before importing.</span></div>
+      <div><strong>Verify after connect</strong><span>Open the IP and DNS tools after connecting to confirm the tunnel behavior.</span></div>
+    </div>
+  </section>
+
+  <section class="download-picks" aria-label="VPN server collections">
+    <h2>Browse other checked VPN picks</h2>
+    <nav class="chips">
+      <a class="chip" href="/fast-vpn-servers/">Top 20 fastest</a>
+      <a class="chip" href="/latest-checked-vpn/">Latest checked</a>
+      <a class="chip" href="/newest-vpn-servers/">Newest servers</a>
+      <a class="chip" href="/low-latency-vpn/">Low latency</a>
+      <a class="chip" href="/setup-openvpn-windows/">Setup guide</a>
+      <a class="chip" href="/setup-openvpn-android/">Android setup</a>
+      <a class="chip" href="/setup-openvpn-linux/">Linux setup</a>
+      <a class="chip" href="/guides/how-to-read-ovpn-file/">How to read an .ovpn file</a>
+      <a class="chip" href="/dns-leak-test/">DNS leak test</a>
+      <a class="chip" href="/what-is-my-ip/">What is my IP</a>
+      <a class="chip" href="/openvpn-clients/">OpenVPN apps</a>
+      <a class="chip" href="/public-vpn-risks/">Public VPN risks</a>
+      <a class="chip" href="/country/australia/">Australia VPN servers</a>    </nav>
+  </section>
+</div>
+<div class="pvl-ad pvl-ad--download-after-next-steps" data-pvl-ad="download_after_next_steps" data-ad-placement="download_after_next_steps" data-nosnippet>
+  <div class="ad-label">Advertisement</div>
+  <!-- PVL_download_after_next_steps_responsive -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6554239609071794" data-ad-slot="1320282101" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+  (function(){
+    var ad = document.currentScript && document.currentScript.previousElementSibling;
+    if (!ad || ad.dataset.pvlAdsensePushed === '1') return;
+    ad.dataset.pvlAdsensePushed = '1';
+    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); }
+    catch (e) { ad.dataset.pvlAdsensePushed = ''; }
+  })();
+  </script>
+</div>
+
+          <section class="panel" data-vpn-collection aria-label="Similar checked servers in Australia">
+          <div class="meta">
+            <div>
+              <h2 class="table-title">Similar checked servers in Australia</h2>
+              <div class="muted">Top 6 live checked VPN servers. Download fresh OpenVPN .ovpn profiles directly from the list.</div>
+            </div>
+            <div class="chips"><span class="chip">Servers: <b>6</b></span></div>
+          </div>
+          <div class="table-wrap" role="region" aria-label="Similar checked servers in Australia table" tabindex="0" data-nosnippet>
+            <table class="pvl-collection-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Country</th>
+                  <th>Host / IP</th>
+                  <th>Speed, Mbps</th>
+                  <th class="hide-sm">Latency, ms</th>
+                  <th class="hide-sm">Protocol / port</th>
+                                      <th>Network score</th>
+                                    <th>Freshness</th>
+	                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                                  <tr data-ssr-row="1"
+                      data-id="896587"
+                      data-country="australia"
+                      data-country-name="Australia"
+                      data-host="61.69.7.98"
+                      data-ip="61.69.7.98"
+                      data-speed="2.16"
+                      data-latency="369"
+                      data-port="1346"
+                      data-proto="tcp"
+                      data-checked-at="2026-08-05T17:33:51Z">
+                    <td>1</td>
+                    <td>
+                      <a class="country-link" href="/country/australia/">
+                        <span class="flag" aria-hidden="true">🇦🇺</span>                        <span>Australia</span>
+                      </a>
+                    </td>
+                    <td><a class="server-detail-link" href="/server/896587/"><div class="c-host">61.69.7.98</div><div class="muted c-ip">61.69.7.98</div></a></td>
+                    <td><span class="metric speed speed-good"><span class="metric-value">2.2</span><span class="meter" aria-hidden="true"><i style="width:100%"></i></span></span><span class="pvl-row-badges"><span class="pvl-badge pvl-badge--info">Recent</span></span></td>
+                    <td class="hide-sm"><span class="pvl-latency-badge pvl-badge pvl-badge--warning" title="High latency">369 ms</span></td>
+                    <td class="hide-sm"><span class="pvl-badge pvl-badge--neutral">TCP 1346</span></td>
+                                          <td><span class="pvl-score pvl-score--poor" title="Based on network measurements. This is not a privacy or operator-trust rating. Speed 1/30; Latency 0/30; Freshness 18/20; Reliability 7/20; Confidence: Low."><span class="pvl-score__value">26</span><span class="pvl-score__meta"><b>Network score</b><small>Low confidence · not a trust score</small></span></span></td>
+                                        <td><time datetime="2026-08-05T17:33:51Z"><span class="pvl-badge pvl-badge--info" title="Recent - checked 14 h ago">Recent</span></time></td>
+	                    <td>
+	                      <div class="server-actions">
+		                        <a class="btn primary small download-normal" href="/download/896587/" data-action="dl" data-id="896587" aria-label="Download .ovpn for Australia OpenVPN server 61.69.7.98" data-download-country="Australia" data-download-code="australia" data-download-host="61.69.7.98" data-download-ip="61.69.7.98" data-download-speed="2.2" data-download-latency="369" data-download-proto="TCP" data-download-port="1346" data-download-checked="2026-08-05T17:33:51Z" data-download-score="26" data-download-score-label="Weak">Download .ovpn</a>
+	                        <a class="details-link details-link-small" href="/server/896587/" aria-label="View details for Australia OpenVPN server 61.69.7.98">View server</a>
+	                      </div>
+	                    </td>
+                  </tr>
+                                  <tr data-ssr-row="1"
+                      data-id="108855"
+                      data-country="australia"
+                      data-country-name="Australia"
+                      data-host="101.176.79.94"
+                      data-ip="101.176.79.94"
+                      data-speed="2.14"
+                      data-latency="399"
+                      data-port="1763"
+                      data-proto="tcp"
+                      data-checked-at="2026-08-05T03:15:48Z">
+                    <td>2</td>
+                    <td>
+                      <a class="country-link" href="/country/australia/">
+                        <span class="flag" aria-hidden="true">🇦🇺</span>                        <span>Australia</span>
+                      </a>
+                    </td>
+                    <td><a class="server-detail-link" href="/server/108855/"><div class="c-host">101.176.79.94</div><div class="muted c-ip">101.176.79.94</div></a></td>
+                    <td><span class="metric speed speed-good"><span class="metric-value">2.1</span><span class="meter" aria-hidden="true"><i style="width:99%"></i></span></span><span class="pvl-row-badges"><span class="pvl-badge pvl-badge--info">Recent</span></span></td>
+                    <td class="hide-sm"><span class="pvl-latency-badge pvl-badge pvl-badge--warning" title="High latency">399 ms</span></td>
+                    <td class="hide-sm"><span class="pvl-badge pvl-badge--neutral">TCP 1763</span></td>
+                                          <td><span class="pvl-score pvl-score--poor" title="Based on network measurements. This is not a privacy or operator-trust rating. Speed 1/30; Latency 0/30; Freshness 16/20; Reliability 7/20; Confidence: Low."><span class="pvl-score__value">24</span><span class="pvl-score__meta"><b>Network score</b><small>Low confidence · not a trust score</small></span></span></td>
+                                        <td><time datetime="2026-08-05T03:15:48Z"><span class="pvl-badge pvl-badge--info" title="Recent - checked 1 d ago">Recent</span></time></td>
+	                    <td>
+	                      <div class="server-actions">
+		                        <a class="btn primary small download-normal" href="/download/108855/" data-action="dl" data-id="108855" aria-label="Download .ovpn for Australia OpenVPN server 101.176.79.94" data-download-country="Australia" data-download-code="australia" data-download-host="101.176.79.94" data-download-ip="101.176.79.94" data-download-speed="2.1" data-download-latency="399" data-download-proto="TCP" data-download-port="1763" data-download-checked="2026-08-05T03:15:48Z" data-download-score="24" data-download-score-label="Weak">Download .ovpn</a>
+	                        <a class="details-link details-link-small" href="/server/108855/" aria-label="View details for Australia OpenVPN server 101.176.79.94">View server</a>
+	                      </div>
+	                    </td>
+                  </tr>
+                                  <tr data-ssr-row="1"
+                      data-id="875099"
+                      data-country="australia"
+                      data-country-name="Australia"
+                      data-host="110.149.193.173"
+                      data-ip="110.149.193.173"
+                      data-speed="2.09"
+                      data-latency="378"
+                      data-port="1780"
+                      data-proto="tcp"
+                      data-checked-at="2026-08-06T06:14:34Z">
+                    <td>3</td>
+                    <td>
+                      <a class="country-link" href="/country/australia/">
+                        <span class="flag" aria-hidden="true">🇦🇺</span>                        <span>Australia</span>
+                      </a>
+                    </td>
+                    <td><a class="server-detail-link" href="/server/875099/"><div class="c-host">110.149.193.173</div><div class="muted c-ip">110.149.193.173</div></a></td>
+                    <td><span class="metric speed speed-good"><span class="metric-value">2.1</span><span class="meter" aria-hidden="true"><i style="width:97%"></i></span></span><span class="pvl-row-badges"><span class="pvl-badge pvl-badge--info">Recent</span></span></td>
+                    <td class="hide-sm"><span class="pvl-latency-badge pvl-badge pvl-badge--warning" title="High latency">378 ms</span></td>
+                    <td class="hide-sm"><span class="pvl-badge pvl-badge--neutral">TCP 1780</span></td>
+                                          <td><span class="pvl-score pvl-score--poor" title="Based on network measurements. This is not a privacy or operator-trust rating. Speed 1/30; Latency 0/30; Freshness 20/20; Reliability 4/20; Confidence: Low."><span class="pvl-score__value">25</span><span class="pvl-score__meta"><b>Network score</b><small>Low confidence · not a trust score</small></span></span></td>
+                                        <td><time datetime="2026-08-06T06:14:34Z"><span class="pvl-badge pvl-badge--info" title="Recent - checked 1 h ago">Recent</span></time></td>
+	                    <td>
+	                      <div class="server-actions">
+		                        <a class="btn primary small download-normal" href="/download/875099/" data-action="dl" data-id="875099" aria-label="Download .ovpn for Australia OpenVPN server 110.149.193.173" data-download-country="Australia" data-download-code="australia" data-download-host="110.149.193.173" data-download-ip="110.149.193.173" data-download-speed="2.1" data-download-latency="378" data-download-proto="TCP" data-download-port="1780" data-download-checked="2026-08-06T06:14:34Z" data-download-score="25" data-download-score-label="Weak">Download .ovpn</a>
+	                        <a class="details-link details-link-small" href="/server/875099/" aria-label="View details for Australia OpenVPN server 110.149.193.173">View server</a>
+	                      </div>
+	                    </td>
+                  </tr>
+                                  <tr data-ssr-row="1"
+                      data-id="343110"
+                      data-country="australia"
+                      data-country-name="Australia"
+                      data-host="101.190.102.223"
+                      data-ip="101.190.102.223"
+                      data-speed="1.11"
+                      data-latency="384"
+                      data-port="1532"
+                      data-proto="tcp"
+                      data-checked-at="2026-08-04T22:30:33Z">
+                    <td>4</td>
+                    <td>
+                      <a class="country-link" href="/country/australia/">
+                        <span class="flag" aria-hidden="true">🇦🇺</span>                        <span>Australia</span>
+                      </a>
+                    </td>
+                    <td><a class="server-detail-link" href="/server/343110/"><div class="c-host">101.190.102.223</div><div class="muted c-ip">101.190.102.223</div></a></td>
+                    <td><span class="metric speed speed-warn"><span class="metric-value">1.1</span><span class="meter" aria-hidden="true"><i style="width:51%"></i></span></span><span class="pvl-row-badges"><span class="pvl-badge pvl-badge--info">Recent</span></span></td>
+                    <td class="hide-sm"><span class="pvl-latency-badge pvl-badge pvl-badge--warning" title="High latency">384 ms</span></td>
+                    <td class="hide-sm"><span class="pvl-badge pvl-badge--neutral">TCP 1532</span></td>
+                                          <td><span class="pvl-score pvl-score--poor" title="Based on network measurements. This is not a privacy or operator-trust rating. Speed 1/30; Latency 0/30; Freshness 15/20; Reliability 7/20; Confidence: Low."><span class="pvl-score__value">23</span><span class="pvl-score__meta"><b>Network score</b><small>Low confidence · not a trust score</small></span></span></td>
+                                        <td><time datetime="2026-08-04T22:30:33Z"><span class="pvl-badge pvl-badge--info" title="Recent - checked 1 d ago">Recent</span></time></td>
+	                    <td>
+	                      <div class="server-actions">
+		                        <a class="btn primary small download-normal" href="/download/343110/" data-action="dl" data-id="343110" aria-label="Download .ovpn for Australia OpenVPN server 101.190.102.223" data-download-country="Australia" data-download-code="australia" data-download-host="101.190.102.223" data-download-ip="101.190.102.223" data-download-speed="1.1" data-download-latency="384" data-download-proto="TCP" data-download-port="1532" data-download-checked="2026-08-04T22:30:33Z" data-download-score="23" data-download-score-label="Weak">Download .ovpn</a>
+	                        <a class="details-link details-link-small" href="/server/343110/" aria-label="View details for Australia OpenVPN server 101.190.102.223">View server</a>
+	                      </div>
+	                    </td>
+                  </tr>
+                                  <tr data-ssr-row="1"
+                      data-id="52347"
+                      data-country="australia"
+                      data-country-name="Australia"
+                      data-host="115.70.53.245"
+                      data-ip="115.70.53.245"
+                      data-speed="0.82"
+                      data-latency="407"
+                      data-port="1244"
+                      data-proto="tcp"
+                      data-checked-at="2026-08-06T04:36:13Z">
+                    <td>5</td>
+                    <td>
+                      <a class="country-link" href="/country/australia/">
+                        <span class="flag" aria-hidden="true">🇦🇺</span>                        <span>Australia</span>
+                      </a>
+                    </td>
+                    <td><a class="server-detail-link" href="/server/52347/"><div class="c-host">115.70.53.245</div><div class="muted c-ip">115.70.53.245</div></a></td>
+                    <td><span class="metric speed speed-warn"><span class="metric-value">0.8</span><span class="meter" aria-hidden="true"><i style="width:38%"></i></span></span><span class="pvl-row-badges"><span class="pvl-badge pvl-badge--info">Recent</span></span></td>
+                    <td class="hide-sm"><span class="pvl-latency-badge pvl-badge pvl-badge--warning" title="High latency">407 ms</span></td>
+                    <td class="hide-sm"><span class="pvl-badge pvl-badge--neutral">TCP 1244</span></td>
+                                          <td><span class="pvl-score pvl-score--poor" title="Based on network measurements. This is not a privacy or operator-trust rating. Speed 0/30; Latency 0/30; Freshness 20/20; Reliability 2/20; Confidence: Low."><span class="pvl-score__value">22</span><span class="pvl-score__meta"><b>Network score</b><small>Low confidence · not a trust score</small></span></span></td>
+                                        <td><time datetime="2026-08-06T04:36:13Z"><span class="pvl-badge pvl-badge--info" title="Recent - checked 3 h ago">Recent</span></time></td>
+	                    <td>
+	                      <div class="server-actions">
+		                        <a class="btn primary small download-normal" href="/download/52347/" data-action="dl" data-id="52347" aria-label="Download .ovpn for Australia OpenVPN server 115.70.53.245" data-download-country="Australia" data-download-code="australia" data-download-host="115.70.53.245" data-download-ip="115.70.53.245" data-download-speed="0.8" data-download-latency="407" data-download-proto="TCP" data-download-port="1244" data-download-checked="2026-08-06T04:36:13Z" data-download-score="22" data-download-score-label="Weak">Download .ovpn</a>
+	                        <a class="details-link details-link-small" href="/server/52347/" aria-label="View details for Australia OpenVPN server 115.70.53.245">View server</a>
+	                      </div>
+	                    </td>
+                  </tr>
+                                  <tr data-ssr-row="1"
+                      data-id="858812"
+                      data-country="australia"
+                      data-country-name="Australia"
+                      data-host="121.221.198.156"
+                      data-ip="121.221.198.156"
+                      data-speed="0.69"
+                      data-latency="415"
+                      data-port="1437"
+                      data-proto="tcp"
+                      data-checked-at="2026-08-05T07:37:45Z">
+                    <td>6</td>
+                    <td>
+                      <a class="country-link" href="/country/australia/">
+                        <span class="flag" aria-hidden="true">🇦🇺</span>                        <span>Australia</span>
+                      </a>
+                    </td>
+                    <td><a class="server-detail-link" href="/server/858812/"><div class="c-host">121.221.198.156</div><div class="muted c-ip">121.221.198.156</div></a></td>
+                    <td><span class="metric speed speed-bad"><span class="metric-value">0.7</span><span class="meter" aria-hidden="true"><i style="width:32%"></i></span></span><span class="pvl-row-badges"><span class="pvl-badge pvl-badge--info">Recent</span></span></td>
+                    <td class="hide-sm"><span class="pvl-latency-badge pvl-badge pvl-badge--warning" title="High latency">415 ms</span></td>
+                    <td class="hide-sm"><span class="pvl-badge pvl-badge--neutral">TCP 1437</span></td>
+                                          <td><span class="pvl-score pvl-score--poor" title="Based on network measurements. This is not a privacy or operator-trust rating. Speed 0/30; Latency 0/30; Freshness 17/20; Reliability 3/20; Confidence: Low."><span class="pvl-score__value">20</span><span class="pvl-score__meta"><b>Network score</b><small>Low confidence · not a trust score</small></span></span></td>
+                                        <td><time datetime="2026-08-05T07:37:45Z"><span class="pvl-badge pvl-badge--info" title="Recent - checked 1 d ago">Recent</span></time></td>
+	                    <td>
+	                      <div class="server-actions">
+		                        <a class="btn primary small download-normal" href="/download/858812/" data-action="dl" data-id="858812" aria-label="Download .ovpn for Australia OpenVPN server 121.221.198.156" data-download-country="Australia" data-download-code="australia" data-download-host="121.221.198.156" data-download-ip="121.221.198.156" data-download-speed="0.7" data-download-latency="415" data-download-proto="TCP" data-download-port="1437" data-download-checked="2026-08-05T07:37:45Z" data-download-score="20" data-download-score-label="Weak">Download .ovpn</a>
+	                        <a class="details-link details-link-small" href="/server/858812/" aria-label="View details for Australia OpenVPN server 121.221.198.156">View server</a>
+	                      </div>
+	                    </td>
+                  </tr>
+                              </tbody>
+            </table>
+          </div>
+                  <div class="seo-snapshot-cards" aria-label="Similar checked servers in Australia cards">
+                      <div class="card">
+              <div class="panel pvl-server-card">
+                <div class="chips">
+                  <span class="chip">
+                    <a class="country-link" href="/country/australia/">
+                      <span class="flag" aria-hidden="true">🇦🇺</span>                      <span>Australia</span>
+                    </a>
+                  </span>
+                </div>
+                <a class="server-detail-link" href="/server/896587/" style="font-weight:600;margin-top:6px">
+                  61.69.7.98                </a>
+                <div class="muted">61.69.7.98</div>
+                <div class="chips" style="margin-top:8px">
+                  <span class="chip chip-metric">Speed: <span class="metric speed speed-good"><span class="metric-value">2.2</span><span class="meter" aria-hidden="true"><i style="width:100%"></i></span></span></span>
+                  <span class="pvl-latency-badge pvl-badge pvl-badge--warning" title="High latency">369 ms</span>                  <span class="pvl-badge pvl-badge--neutral">TCP 1346</span>                  <span class="pvl-score pvl-score--poor" title="Based on network measurements. This is not a privacy or operator-trust rating. Speed 1/30; Latency 0/30; Freshness 18/20; Reliability 7/20; Confidence: Low."><span class="pvl-score__value">26</span><span class="pvl-score__meta"><b>Network score</b><small>Low confidence · not a trust score</small></span></span>                                    <span class="pvl-badge pvl-badge--info" title="Recent - checked 14 h ago">Recent</span>                  <span class="pvl-row-badges"><span class="pvl-badge pvl-badge--info">Recent</span></span>                </div>
+                <div class="muted" style="margin-top:6px">Checked 14 h ago</div>
+                <div class="server-actions" style="margin-top:8px">
+                  <a class="btn primary download-normal" href="/download/896587/" data-action="dl" data-id="896587" aria-label="Download .ovpn for Australia OpenVPN server 61.69.7.98" data-download-country="Australia" data-download-code="australia" data-download-host="61.69.7.98" data-download-ip="61.69.7.98" data-download-speed="2.2" data-download-latency="369" data-download-proto="TCP" data-download-port="1346" data-download-checked="2026-08-05T17:33:51Z" data-download-score="26" data-download-score-label="Weak">Download .ovpn</a>
+                  <a class="details-link" href="/server/896587/" aria-label="View details for Australia OpenVPN server 61.69.7.98">View server</a>
+                </div>
+              </div>
+            </div>
+                      <div class="card">
+              <div class="panel pvl-server-card">
+                <div class="chips">
+                  <span class="chip">
+                    <a class="country-link" href="/country/australia/">
+                      <span class="flag" aria-hidden="true">🇦🇺</span>                      <span>Australia</span>
+                    </a>
+                  </span>
+                </div>
+                <a class="server-detail-link" href="/server/108855/" style="font-weight:600;margin-top:6px">
+                  101.176.79.94                </a>
+                <div class="muted">101.176.79.94</div>
+                <div class="chips" style="margin-top:8px">
+                  <span class="chip chip-metric">Speed: <span class="metric speed speed-good"><span class="metric-value">2.1</span><span class="meter" aria-hidden="true"><i style="width:99%"></i></span></span></span>
+                  <span class="pvl-latency-badge pvl-badge pvl-badge--warning" title="High latency">399 ms</span>                  <span class="pvl-badge pvl-badge--neutral">TCP 1763</span>                  <span class="pvl-score pvl-score--poor" title="Based on network measurements. This is not a privacy or operator-trust rating. Speed 1/30; Latency 0/30; Freshness 16/20; Reliability 7/20; Confidence: Low."><span class="pvl-score__value">24</span><span class="pvl-score__meta"><b>Network score</b><small>Low confidence · not a trust score</small></span></span>                                    <span class="pvl-badge pvl-badge--info" title="Recent - checked 1 d ago">Recent</span>                  <span class="pvl-row-badges"><span class="pvl-badge pvl-badge--info">Recent</span></span>                </div>
+                <div class="muted" style="margin-top:6px">Checked 1 d ago</div>
+                <div class="server-actions" style="margin-top:8px">
+                  <a class="btn primary download-normal" href="/download/108855/" data-action="dl" data-id="108855" aria-label="Download .ovpn for Australia OpenVPN server 101.176.79.94" data-download-country="Australia" data-download-code="australia" data-download-host="101.176.79.94" data-download-ip="101.176.79.94" data-download-speed="2.1" data-download-latency="399" data-download-proto="TCP" data-download-port="1763" data-download-checked="2026-08-05T03:15:48Z" data-download-score="24" data-download-score-label="Weak">Download .ovpn</a>
+                  <a class="details-link" href="/server/108855/" aria-label="View details for Australia OpenVPN server 101.176.79.94">View server</a>
+                </div>
+              </div>
+            </div>
+                      <div class="card">
+              <div class="panel pvl-server-card">
+                <div class="chips">
+                  <span class="chip">
+                    <a class="country-link" href="/country/australia/">
+                      <span class="flag" aria-hidden="true">🇦🇺</span>                      <span>Australia</span>
+                    </a>
+                  </span>
+                </div>
+                <a class="server-detail-link" href="/server/875099/" style="font-weight:600;margin-top:6px">
+                  110.149.193.173                </a>
+                <div class="muted">110.149.193.173</div>
+                <div class="chips" style="margin-top:8px">
+                  <span class="chip chip-metric">Speed: <span class="metric speed speed-good"><span class="metric-value">2.1</span><span class="meter" aria-hidden="true"><i style="width:97%"></i></span></span></span>
+                  <span class="pvl-latency-badge pvl-badge pvl-badge--warning" title="High latency">378 ms</span>                  <span class="pvl-badge pvl-badge--neutral">TCP 1780</span>                  <span class="pvl-score pvl-score--poor" title="Based on network measurements. This is not a privacy or operator-trust rating. Speed 1/30; Latency 0/30; Freshness 20/20; Reliability 4/20; Confidence: Low."><span class="pvl-score__value">25</span><span class="pvl-score__meta"><b>Network score</b><small>Low confidence · not a trust score</small></span></span>                                    <span class="pvl-badge pvl-badge--info" title="Recent - checked 1 h ago">Recent</span>                  <span class="pvl-row-badges"><span class="pvl-badge pvl-badge--info">Recent</span></span>                </div>
+                <div class="muted" style="margin-top:6px">Checked 1 h ago</div>
+                <div class="server-actions" style="margin-top:8px">
+                  <a class="btn primary download-normal" href="/download/875099/" data-action="dl" data-id="875099" aria-label="Download .ovpn for Australia OpenVPN server 110.149.193.173" data-download-country="Australia" data-download-code="australia" data-download-host="110.149.193.173" data-download-ip="110.149.193.173" data-download-speed="2.1" data-download-latency="378" data-download-proto="TCP" data-download-port="1780" data-download-checked="2026-08-06T06:14:34Z" data-download-score="25" data-download-score-label="Weak">Download .ovpn</a>
+                  <a class="details-link" href="/server/875099/" aria-label="View details for Australia OpenVPN server 110.149.193.173">View server</a>
+                </div>
+              </div>
+            </div>
+                      <div class="card">
+              <div class="panel pvl-server-card">
+                <div class="chips">
+                  <span class="chip">
+                    <a class="country-link" href="/country/australia/">
+                      <span class="flag" aria-hidden="true">🇦🇺</span>                      <span>Australia</span>
+                    </a>
+                  </span>
+                </div>
+                <a class="server-detail-link" href="/server/343110/" style="font-weight:600;margin-top:6px">
+                  101.190.102.223                </a>
+                <div class="muted">101.190.102.223</div>
+                <div class="chips" style="margin-top:8px">
+                  <span class="chip chip-metric">Speed: <span class="metric speed speed-warn"><span class="metric-value">1.1</span><span class="meter" aria-hidden="true"><i style="width:51%"></i></span></span></span>
+                  <span class="pvl-latency-badge pvl-badge pvl-badge--warning" title="High latency">384 ms</span>                  <span class="pvl-badge pvl-badge--neutral">TCP 1532</span>                  <span class="pvl-score pvl-score--poor" title="Based on network measurements. This is not a privacy or operator-trust rating. Speed 1/30; Latency 0/30; Freshness 15/20; Reliability 7/20; Confidence: Low."><span class="pvl-score__value">23</span><span class="pvl-score__meta"><b>Network score</b><small>Low confidence · not a trust score</small></span></span>                                    <span class="pvl-badge pvl-badge--info" title="Recent - checked 1 d ago">Recent</span>                  <span class="pvl-row-badges"><span class="pvl-badge pvl-badge--info">Recent</span></span>                </div>
+                <div class="muted" style="margin-top:6px">Checked 1 d ago</div>
+                <div class="server-actions" style="margin-top:8px">
+                  <a class="btn primary download-normal" href="/download/343110/" data-action="dl" data-id="343110" aria-label="Download .ovpn for Australia OpenVPN server 101.190.102.223" data-download-country="Australia" data-download-code="australia" data-download-host="101.190.102.223" data-download-ip="101.190.102.223" data-download-speed="1.1" data-download-latency="384" data-download-proto="TCP" data-download-port="1532" data-download-checked="2026-08-04T22:30:33Z" data-download-score="23" data-download-score-label="Weak">Download .ovpn</a>
+                  <a class="details-link" href="/server/343110/" aria-label="View details for Australia OpenVPN server 101.190.102.223">View server</a>
+                </div>
+              </div>
+            </div>
+                      <div class="card">
+              <div class="panel pvl-server-card">
+                <div class="chips">
+                  <span class="chip">
+                    <a class="country-link" href="/country/australia/">
+                      <span class="flag" aria-hidden="true">🇦🇺</span>                      <span>Australia</span>
+                    </a>
+                  </span>
+                </div>
+                <a class="server-detail-link" href="/server/52347/" style="font-weight:600;margin-top:6px">
+                  115.70.53.245                </a>
+                <div class="muted">115.70.53.245</div>
+                <div class="chips" style="margin-top:8px">
+                  <span class="chip chip-metric">Speed: <span class="metric speed speed-warn"><span class="metric-value">0.8</span><span class="meter" aria-hidden="true"><i style="width:38%"></i></span></span></span>
+                  <span class="pvl-latency-badge pvl-badge pvl-badge--warning" title="High latency">407 ms</span>                  <span class="pvl-badge pvl-badge--neutral">TCP 1244</span>                  <span class="pvl-score pvl-score--poor" title="Based on network measurements. This is not a privacy or operator-trust rating. Speed 0/30; Latency 0/30; Freshness 20/20; Reliability 2/20; Confidence: Low."><span class="pvl-score__value">22</span><span class="pvl-score__meta"><b>Network score</b><small>Low confidence · not a trust score</small></span></span>                                    <span class="pvl-badge pvl-badge--info" title="Recent - checked 3 h ago">Recent</span>                  <span class="pvl-row-badges"><span class="pvl-badge pvl-badge--info">Recent</span></span>                </div>
+                <div class="muted" style="margin-top:6px">Checked 3 h ago</div>
+                <div class="server-actions" style="margin-top:8px">
+                  <a class="btn primary download-normal" href="/download/52347/" data-action="dl" data-id="52347" aria-label="Download .ovpn for Australia OpenVPN server 115.70.53.245" data-download-country="Australia" data-download-code="australia" data-download-host="115.70.53.245" data-download-ip="115.70.53.245" data-download-speed="0.8" data-download-latency="407" data-download-proto="TCP" data-download-port="1244" data-download-checked="2026-08-06T04:36:13Z" data-download-score="22" data-download-score-label="Weak">Download .ovpn</a>
+                  <a class="details-link" href="/server/52347/" aria-label="View details for Australia OpenVPN server 115.70.53.245">View server</a>
+                </div>
+              </div>
+            </div>
+                      <div class="card">
+              <div class="panel pvl-server-card">
+                <div class="chips">
+                  <span class="chip">
+                    <a class="country-link" href="/country/australia/">
+                      <span class="flag" aria-hidden="true">🇦🇺</span>                      <span>Australia</span>
+                    </a>
+                  </span>
+                </div>
+                <a class="server-detail-link" href="/server/858812/" style="font-weight:600;margin-top:6px">
+                  121.221.198.156                </a>
+                <div class="muted">121.221.198.156</div>
+                <div class="chips" style="margin-top:8px">
+                  <span class="chip chip-metric">Speed: <span class="metric speed speed-bad"><span class="metric-value">0.7</span><span class="meter" aria-hidden="true"><i style="width:32%"></i></span></span></span>
+                  <span class="pvl-latency-badge pvl-badge pvl-badge--warning" title="High latency">415 ms</span>                  <span class="pvl-badge pvl-badge--neutral">TCP 1437</span>                  <span class="pvl-score pvl-score--poor" title="Based on network measurements. This is not a privacy or operator-trust rating. Speed 0/30; Latency 0/30; Freshness 17/20; Reliability 3/20; Confidence: Low."><span class="pvl-score__value">20</span><span class="pvl-score__meta"><b>Network score</b><small>Low confidence · not a trust score</small></span></span>                                    <span class="pvl-badge pvl-badge--info" title="Recent - checked 1 d ago">Recent</span>                  <span class="pvl-row-badges"><span class="pvl-badge pvl-badge--info">Recent</span></span>                </div>
+                <div class="muted" style="margin-top:6px">Checked 1 d ago</div>
+                <div class="server-actions" style="margin-top:8px">
+                  <a class="btn primary download-normal" href="/download/858812/" data-action="dl" data-id="858812" aria-label="Download .ovpn for Australia OpenVPN server 121.221.198.156" data-download-country="Australia" data-download-code="australia" data-download-host="121.221.198.156" data-download-ip="121.221.198.156" data-download-speed="0.7" data-download-latency="415" data-download-proto="TCP" data-download-port="1437" data-download-checked="2026-08-05T07:37:45Z" data-download-score="20" data-download-score-label="Weak">Download .ovpn</a>
+                  <a class="details-link" href="/server/858812/" aria-label="View details for Australia OpenVPN server 121.221.198.156">View server</a>
+                </div>
+              </div>
+            </div>
+                  </div>
+                </section>
+        <div class="pvl-ad pvl-ad--download-bottom" data-pvl-ad="download_bottom" data-ad-placement="download_bottom" data-nosnippet>
+  <div class="ad-label">Advertisement</div>
+  <!-- pvl_download_bottom_responsive -->
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6554239609071794" data-ad-slot="5230506875" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+  (function(){
+    var ad = document.currentScript && document.currentScript.previousElementSibling;
+    if (!ad || ad.dataset.pvlAdsensePushed === '1') return;
+    ad.dataset.pvlAdsensePushed = '1';
+    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); }
+    catch (e) { ad.dataset.pvlAdsensePushed = ''; }
+  })();
+  </script>
+</div>
+
+
+</main>
+
+
+<footer class="site-footer" data-nosnippet>
+  <div class="site-footer-inner">
+    <a class="footer-brand" href="/" aria-label="PublicVPNList home">
+      <img src="/favicon.svg" alt="" width="28" height="28" loading="lazy">
+      <span>PublicVPNList</span>
+    </a>
+    <nav class="footer-menu footer-groups" aria-label="Footer">
+              <div class="footer-group">
+          <h2>Tools</h2>
+                      <a href="/what-is-my-ip/">What is my IP</a>
+                      <a href="/best-vpn-server-for-my-location/">Best server finder</a>
+                      <a href="/dns-leak-test/">DNS leak test</a>
+                      <a href="/webrtc-leak-test/">WebRTC leak test</a>
+                      <a href="/openvpn-config-validator/">OpenVPN config validator</a>
+                      <a href="/port-check/">Port check</a>
+                  </div>
+              <div class="footer-group">
+          <h2>Data</h2>
+                      <a href="/countries/">Countries</a>
+                      <a href="/vpn-map/">VPN map</a>
+                      <a href="/methodology/">Methodology</a>
+                      <a href="/sources/">Sources</a>
+                      <a href="/status/">Status</a>
+                      <a href="/download-vpn-list/">VPN list export</a>
+                      <a href="/api/">Public API</a>
+                      <a href="/exports/">Bulk downloads</a>
+                      <a href="/export/">Data policy</a>
+                  </div>
+              <div class="footer-group">
+          <h2>VPN lists</h2>
+                      <a href="/vless/">Checked VLESS</a>
+                      <a href="/best-free-vpn/">Best VPN</a>
+                      <a href="/fast-vpn-servers/">Fast servers</a>
+                      <a href="/latest-checked-vpn/">Latest checked</a>
+                      <a href="/new-openvpn-configs-today/">New configs today</a>
+                      <a href="/low-latency-vpn/">Low latency</a>
+                      <a href="/openvpn-configs/">OpenVPN configs</a>
+                  </div>
+              <div class="footer-group">
+          <h2>Guides</h2>
+                      <a href="/guides/">Guide hub</a>
+                      <a href="/what-is-vless/">What is VLESS?</a>
+                      <a href="/setup-openvpn-windows/">Windows setup</a>
+                      <a href="/setup-openvpn-linux/">Linux setup</a>
+                      <a href="/setup-openvpn-android/">Android setup</a>
+                      <a href="/openvpn-clients/">OpenVPN clients</a>
+                      <a href="/public-vpn-risks/">Public VPN risks</a>
+                      <a href="/how-we-check-vpn-servers/">How checks work</a>
+                  </div>
+              <div class="footer-group">
+          <h2>Site</h2>
+                      <a href="/about/">About</a>
+                      <a href="/license/">License</a>
+                      <a href="/privacy-policy/">Privacy Policy</a>
+                      <a href="/contacts/">Contacts</a>
+                  </div>
+          </nav>
+    <div class="footer-year">© 2026 PublicVPNList</div>
+  </div>
+</footer>
+
+  
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://publicvpnlist.com/#organization","name":"PublicVPNList","url":"https://publicvpnlist.com/","logo":{"@type":"ImageObject","url":"https://publicvpnlist.com/favicon.svg","contentUrl":"https://publicvpnlist.com/favicon.svg"}},{"@type":"Organization","@id":"https://publicvpnlist.com/#editorial-team","name":"PublicVPNList editorial team","url":"https://publicvpnlist.com/about/","parentOrganization":{"@id":"https://publicvpnlist.com/#organization"}},{"@type":"WebSite","@id":"https://publicvpnlist.com/#website","url":"https://publicvpnlist.com/","name":"PublicVPNList","alternateName":["Public VPN List"],"description":"PublicVPNList is a continuously updated catalog of live checked public OpenVPN servers with measured speed, latency, freshness and downloadable .ovpn profiles.","publisher":{"@id":"https://publicvpnlist.com/#organization"},"inLanguage":"en"},{"@type":"WebPage","@id":"https://publicvpnlist.com/download/948683/#webpage","url":"https://publicvpnlist.com/download/948683/","name":"Australia OpenVPN .ovpn download","description":"Download a checked Australia OpenVPN .ovpn file after reviewing the selected public VPN server details.","isPartOf":{"@id":"https://publicvpnlist.com/#website"},"breadcrumb":{"@id":"https://publicvpnlist.com/download/948683/#breadcrumb"},"inLanguage":"en"},{"@type":"BreadcrumbList","@id":"https://publicvpnlist.com/download/948683/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://publicvpnlist.com/"},{"@type":"ListItem","position":2,"name":"Australia OpenVPN .ovpn download","item":"https://publicvpnlist.com/download/948683/"}]}]}</script>
+    <script defer src="/local/templates/vpn/assets/app.js?v=1785743961"></script>
+</body>
+</html>
