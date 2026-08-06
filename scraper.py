@@ -1,9 +1,18 @@
 from playwright.sync_api import sync_playwright
 import re
+import socket
 
 URL = "https://publicvpnlist.com/country/australia/"
 
 servers = []
+
+def check_server(host, port, timeout=5):
+    try:
+        sock = socket.create_connection((host, int(port)), timeout=timeout)
+        sock.close()
+        return True
+    except:
+        return False
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
@@ -13,7 +22,6 @@ with sync_playwright() as p:
 
     html = page.content()
 
-    # Find all download pages
     links = sorted(set(re.findall(r'/download/\d+/', html)))
     links = ["https://publicvpnlist.com" + link for link in links]
 
@@ -30,9 +38,16 @@ with sync_playwright() as p:
         port = re.search(r'data-download-port="([^"]+)"', page_html)
 
         if host and port:
-            server = f"{host.group(1)}:{port.group(1)}"
-            print("FOUND:", server)
-            servers.append(server)
+            ip = host.group(1)
+            portnum = port.group(1)
+
+            print(f"Testing {ip}:{portnum}...")
+
+            if check_server(ip, portnum):
+                print(f"✓ ONLINE {ip}:{portnum}")
+                servers.append(f"{ip}:{portnum}")
+            else:
+                print(f"✗ OFFLINE {ip}:{portnum}")
 
     browser.close()
 
@@ -41,4 +56,4 @@ servers = sorted(set(servers))
 with open("servers.txt", "w", encoding="utf-8") as f:
     f.write("\n".join(servers))
 
-print(f"Saved {len(servers)} servers")
+print(f"\nSaved {len(servers)} working servers")
