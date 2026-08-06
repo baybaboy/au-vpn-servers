@@ -158,7 +158,7 @@
   data-download-checked="2026-08-06T07:30:35Z">
   <div class="download-header">
     <h1>Download .ovpn profile</h1>
-          <p class="muted">Australia · 101.188.56.82 · TCP 1785<br>Last catalog check: 34 min ago</p>
+          <p class="muted">Australia · 101.188.56.82 · TCP 1785<br>Last catalog check: 40 min ago</p>
       <p class="download-warning">Public endpoint. Use for testing and low-risk browsing only. Review the .ovpn profile before connecting.</p>
               <div class="download-primary-actions" style="margin:10px 0 12px">
         <button class="btn primary download-normal" id="downloadCurrentCheckBtn" type="button" aria-label="Run current check for Australia OpenVPN server 101.188.56.82">Run current check</button>
