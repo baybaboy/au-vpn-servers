@@ -15,7 +15,7 @@ with sync_playwright() as p:
     # Find download links
     download_links = sorted(set(re.findall(r'https://publicvpnlist\.com/download/\d+/', html)))
     print(f"Found {len(download_links)} download links")
-print(download_links)
+    print(download_links)
 
     servers = []
 
@@ -25,13 +25,12 @@ print(download_links)
 
             r = requests.get(link, timeout=20, allow_redirects=True)
 
-print("Checking:", link)
-print("Final URL:", r.url)
+            print("Final URL:", r.url)
 
-with open("download.txt", "w", encoding="utf-8") as f:
-    f.write(r.text)
+            with open("download.txt", "w", encoding="utf-8") as f:
+                f.write(r.text)
 
-m = re.search(r"remote\s+([^\s]+)\s+(\d+)", r.text)
+            m = re.search(r"remote\s+([^\s]+)\s+(\d+)", r.text)
 
             if m:
                 server = m.group(1)
