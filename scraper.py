@@ -23,11 +23,13 @@ with sync_playwright() as p:
 
             r = requests.get(link, timeout=20, allow_redirects=True)
 
+print("Checking:", link)
 print("Final URL:", r.url)
-print(r.text[:500])
 
-            # Find "remote server port"
-            m = re.search(r"remote\s+([^\s]+)\s+(\d+)", r.text)
+with open("download.txt", "w", encoding="utf-8") as f:
+    f.write(r.text)
+
+m = re.search(r"remote\s+([^\s]+)\s+(\d+)", r.text)
 
             if m:
                 server = m.group(1)
