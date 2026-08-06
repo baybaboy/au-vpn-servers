@@ -1,6 +1,6 @@
 {
-    "last_updated": "2026-08-06T10:54:48Z",
-    "total_servers": 6,
+    "last_updated": "2026-08-06T11:57:45Z",
+    "total_servers": 7,
     "servers": [
         {
             "ip": "101.176.79.94",
@@ -26,6 +26,13 @@
         {
             "ip": "110.149.193.173",
             "port": 1780,
+            "country": "Australia",
+            "protocol": "TCP",
+            "status": "online"
+        },
+        {
+            "ip": "121.221.198.156",
+            "port": 1437,
             "country": "Australia",
             "protocol": "TCP",
             "status": "online"
