@@ -4,6 +4,8 @@ import re
 
 URL = "https://publicvpnlist.com/country/australia/"
 
+servers = []
+
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
     page = browser.new_page()
@@ -12,9 +14,8 @@ with sync_playwright() as p:
 
     html = page.content()
 
-    # Find download links
+    # Find all download links
     download_links = sorted(set(re.findall(r'/download/\d+/', html)))
-
     download_links = [
         "https://publicvpnlist.com" + link
         for link in download_links
@@ -23,20 +24,16 @@ with sync_playwright() as p:
     print(f"Found {len(download_links)} download links")
     print(download_links)
 
-    servers = []
-
     for link in download_links:
         try:
+            print("=" * 60)
             print("Checking:", link)
 
             r = requests.get(link, timeout=20, allow_redirects=True)
 
             print("Final URL:", r.url)
-            print("=" * 50)
-print("Final URL:", r.url)
-print("Content-Type:", r.headers.get("Content-Type"))
-print(r.text[:500])
-print("=" * 50)
+            print("Content-Type:", r.headers.get("Content-Type"))
+            print(r.text[:500])
 
             with open("download.txt", "w", encoding="utf-8") as f:
                 f.write(r.text)
@@ -47,15 +44,16 @@ print("=" * 50)
                 server = m.group(1)
                 port = m.group(2)
                 servers.append(f"{server}:{port}")
+                print("FOUND:", f"{server}:{port}")
 
         except Exception as e:
-            print(e)
+            print("ERROR:", e)
 
     browser.close()
 
 servers = sorted(set(servers))
 
-with open("servers.txt", "w") as f:
+with open("servers.txt", "w", encoding="utf-8") as f:
     f.write("\n".join(servers))
 
 print(f"Found {len(servers)} servers")
