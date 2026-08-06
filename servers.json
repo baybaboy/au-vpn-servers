@@ -1,0 +1,48 @@
+{
+    "last_updated": "2026-08-06T10:54:48Z",
+    "total_servers": 6,
+    "servers": [
+        {
+            "ip": "101.176.79.94",
+            "port": 1763,
+            "country": "Australia",
+            "protocol": "TCP",
+            "status": "online"
+        },
+        {
+            "ip": "101.188.56.82",
+            "port": 1785,
+            "country": "Australia",
+            "protocol": "TCP",
+            "status": "online"
+        },
+        {
+            "ip": "101.190.102.223",
+            "port": 1532,
+            "country": "Australia",
+            "protocol": "TCP",
+            "status": "online"
+        },
+        {
+            "ip": "110.149.193.173",
+            "port": 1780,
+            "country": "Australia",
+            "protocol": "TCP",
+            "status": "online"
+        },
+        {
+            "ip": "125.253.56.120",
+            "port": 1521,
+            "country": "Australia",
+            "protocol": "TCP",
+            "status": "online"
+        },
+        {
+            "ip": "61.69.7.98",
+            "port": 1346,
+            "country": "Australia",
+            "protocol": "TCP",
+            "status": "online"
+        }
+    ]
+}
