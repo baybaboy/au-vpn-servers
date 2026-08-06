@@ -1,4 +1,6 @@
 from playwright.sync_api import sync_playwright
+import requests
+import re
 
 URL = "https://publicvpnlist.com/country/australia/"
 
@@ -8,15 +10,35 @@ with sync_playwright() as p:
 
     page.goto(URL, wait_until="networkidle")
 
-    page.screenshot(path="page.png", full_page=True)
-
     html = page.content()
-    import re
 
-links = re.findall(r'href="(/download/\d+/)"', html)
+    # Find download links
+    download_links = sorted(set(re.findall(r'https://publicvpnlist\.com/download/\d+/', html)))
 
-with open("servers.txt", "w", encoding="utf-8") as f:
-    for link in sorted(set(links)):
-        f.write("https://publicvpnlist.com" + link + "\n")
+    servers = []
 
-print(f"Found {len(links)} download links")
+    for link in download_links:
+        try:
+            print("Checking:", link)
+
+            r = requests.get(link, timeout=20)
+
+            # Find "remote server port"
+            m = re.search(r"remote\s+([^\s]+)\s+(\d+)", r.text)
+
+            if m:
+                server = m.group(1)
+                port = m.group(2)
+                servers.append(f"{server}:{port}")
+
+        except Exception as e:
+            print(e)
+
+    browser.close()
+
+servers = sorted(set(servers))
+
+with open("servers.txt", "w") as f:
+    f.write("\n".join(servers))
+
+print(f"Found {len(servers)} servers")
