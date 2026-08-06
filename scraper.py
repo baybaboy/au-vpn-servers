@@ -1,29 +1,16 @@
 import requests
-from bs4 import BeautifulSoup
-import re
 
-URL = "https://publicvpnlist.com/country/australia/"
+url = "https://publicvpnlist.com/country/australia/"
 
 headers = {
     "User-Agent": "Mozilla/5.0"
 }
 
-response = requests.get(URL, headers=headers, timeout=30)
-response.raise_for_status()
+r = requests.get(url, headers=headers, timeout=30)
 
-soup = BeautifulSoup(response.text, "lxml")
+print("Status:", r.status_code)
 
-# Find IP:PORT combinations
-matches = re.findall(
-    r'(\d{1,3}(?:\.\d{1,3}){3})\D+TCP\D+(\d{2,5})',
-    soup.get_text(" ", strip=True),
-    flags=re.IGNORECASE
-)
+with open("page.html", "w", encoding="utf-8") as f:
+    f.write(r.text)
 
-servers = sorted(set(f"{ip}:{port}" for ip, port in matches))
-
-with open("servers.txt", "w") as f:
-    for server in servers:
-        f.write(server + "\n")
-
-print(f"Found {len(servers)} servers")
+print("Downloaded", len(r.text), "bytes")
