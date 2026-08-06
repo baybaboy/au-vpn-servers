@@ -1,16 +1,18 @@
-import requests
+from playwright.sync_api import sync_playwright
 
-url = "https://publicvpnlist.com/country/australia/"
+URL = "https://publicvpnlist.com/country/australia/"
 
-headers = {
-    "User-Agent": "Mozilla/5.0"
-}
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    page = browser.new_page()
 
-r = requests.get(url, headers=headers, timeout=30)
+    page.goto(URL, wait_until="networkidle")
 
-print("Status:", r.status_code)
+    page.screenshot(path="page.png", full_page=True)
 
-with open("page.html", "w", encoding="utf-8") as f:
-    f.write(r.text)
+    with open("page.html", "w", encoding="utf-8") as f:
+        f.write(page.content())
 
-print("Downloaded", len(r.text), "bytes")
+    print("Saved page.html and page.png")
+
+    browser.close()
