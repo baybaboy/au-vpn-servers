@@ -86,7 +86,7 @@ for server in servers:
         "PING": "20",
         "FLAG": "AU",
         "SESSIONS": 0,
-        "LINE_QUALITY": "Excellent",
+        "LINE_QUALITY": "100",
         "SCORE": 100
     })
 
