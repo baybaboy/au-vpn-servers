@@ -149,6 +149,20 @@ def get_publicvpnlist_servers():
 
             server = f"{host}:{int(port)}"
             discovered.append(server)
+                    meta = payload.get("meta", {})
+
+        current_page = meta.get("current_page", page)
+        last_page = meta.get("last_page")
+
+        if last_page is not None:
+            if current_page >= last_page:
+                break
+        elif len(data) < PER_PAGE:
+            break
+
+        page += 1
+
+    return discovered
 
 
 # ============================================================
