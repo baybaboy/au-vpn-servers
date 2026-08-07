@@ -47,6 +47,15 @@ with sync_playwright() as p:
 
     page.goto(URL, wait_until="domcontentloaded", timeout=15000)
 
+    # The server table is populated by client-side JS after the initial
+    # HTML loads (the page shell literally shows "Servers found: 0" until
+    # that fetch completes). domcontentloaded fires before that happens,
+    # so we wait for an actual download link to show up in the DOM.
+    try:
+        page.wait_for_selector('a[href*="/download/"]', timeout=15000)
+    except Exception:
+        print("Warning: no download links appeared within timeout — site may be slow or layout changed")
+
     html = page.content()
 
     links = sorted(set(re.findall(r'/download/\d+/', html)))
@@ -63,6 +72,9 @@ with sync_playwright() as p:
                 wait_until="domcontentloaded",
                 timeout=10000
             )
+            # Same issue on individual server pages: wait for the
+            # data-download-host attribute to actually be rendered.
+            page.wait_for_selector('[data-download-host]', timeout=10000)
         except Exception:
             print(f"Skipping timeout: {link}")
             continue
