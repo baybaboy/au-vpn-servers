@@ -119,6 +119,10 @@ def get_publicvpnlist_servers():
             break
 
         data = payload.get("data", [])
+        if data:
+    print("\n===== FIRST API RECORD =====")
+    print(json.dumps(data[0], indent=4))
+    print("============================\n")
 
         if not data:
             break
