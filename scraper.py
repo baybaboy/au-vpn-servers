@@ -119,6 +119,36 @@ def get_publicvpnlist_servers():
             break
 
         print(f"API page {page}: {len(data)} servers")
+                # Debug: print the first API record on the first page
+        if page == 1:
+            print("\n===== FIRST API RECORD =====")
+            print(json.dumps(data[0], indent=4))
+            print("============================\n")
+
+        for record in data:
+
+            host = record.get("ip") or record.get("hostname")
+            port = record.get("port")
+
+            protocol = str(record.get("protocol", "")).lower()
+            transport = str(record.get("transport", "")).lower()
+            country = str(record.get("country_code", "")).upper()
+            availability = str(record.get("availability_status", "")).lower()
+
+            print(
+                f"host={host} "
+                f"port={port} "
+                f"country={country} "
+                f"protocol={protocol} "
+                f"transport={transport} "
+                f"availability={availability}"
+            )
+
+            if not host or not port:
+                continue
+
+            server = f"{host}:{int(port)}"
+            discovered.append(server)
 
 
 # ============================================================
