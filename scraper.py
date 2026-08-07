@@ -160,23 +160,17 @@ def get_publicvpnlist_servers():
             if not host or not port:
                 continue
 
-            # Extra safety filtering
-            if country != "AU":
-                continue
+            print(
+    f"host={host} "
+    f"port={port} "
+    f"country={country} "
+    f"protocol={protocol} "
+    f"transport={transport} "
+    f"availability={availability}"
+)
 
-            if protocol != "openvpn":
-                continue
-
-            if transport != "tcp":
-                continue
-
-            # If availability is supplied, require online
-            if availability and availability != "online":
-                continue
-
-            server = f"{host}:{int(port)}"
-
-            discovered.append(server)
+server = f"{host}:{int(port)}"
+discovered.append(server)
 
         # Check pagination
         meta = payload.get("meta", {})
