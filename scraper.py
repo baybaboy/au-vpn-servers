@@ -118,14 +118,17 @@ def get_publicvpnlist_servers():
             print(f"API request failed: {e}")
             break
 
-        data = payload.get("data", [])
-        if data:
-    print("\n===== FIRST API RECORD =====")
-    print(json.dumps(data[0], indent=4))
-    print("============================\n")
+        print(
+f"host={host} "
+f"port={port} "
+f"country={country} "
+f"protocol={protocol} "
+f"transport={transport} "
+f"availability={availability}"
+)
 
-        if not data:
-            break
+server = f"{host}:{int(port)}"
+discovered.append(server)
 
         print(
             f"API page {page}: "
