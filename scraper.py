@@ -2,6 +2,7 @@ from playwright.sync_api import sync_playwright
 import re
 import socket
 import json
+import time
 
 URL = "https://publicvpnlist.com/country/australia/"
 
@@ -23,11 +24,21 @@ except FileNotFoundError:
 
 def check_server(host, port, timeout=5):
     try:
-        sock = socket.create_connection((host, int(port)), timeout=timeout)
+        start = time.time()
+
+        sock = socket.create_connection(
+            (host, int(port)),
+            timeout=timeout
+        )
+
         sock.close()
-        return True
+
+        latency = int((time.time() - start) * 1000)
+
+        return True, latency
+
     except Exception:
-        return False
+        return False, None
 
 
 with sync_playwright() as p:
@@ -75,41 +86,59 @@ with sync_playwright() as p:
 # Remove duplicates
 servers = sorted(set(servers))
 
-print(f"\nTesting {len(servers)} servers...")
+print(f"\nTesting {len(servers)} unique servers...")
 
 working_servers = []
 
 for server in servers:
+
     ip, port = server.split(":")
 
     print(f"Testing {ip}:{port}...")
 
-    if check_server(ip, port):
-        print(f"✓ ONLINE {ip}:{port}")
-        working_servers.append(server)
+    online, latency = check_server(ip, port)
+
+    if online:
+        print(f"✓ ONLINE ({latency} ms)")
+        working_servers.append((server, latency))
     else:
-        print(f"✗ OFFLINE {ip}:{port}")
+        print("✗ OFFLINE")
+
+# Fastest first
+working_servers.sort(key=lambda x: x[1])
 
 # Save servers.txt
 with open("servers.txt", "w", encoding="utf-8") as f:
-    f.write("\n".join(working_servers))
+    for server, latency in working_servers:
+        f.write(server + "\n")
 
-# Build Records.json
 records = []
 
-for server in working_servers:
+for server, latency in working_servers:
+
     ip, port = server.split(":")
+
+    if latency <= 100:
+        score = 100
+    elif latency <= 200:
+        score = 90
+    elif latency <= 300:
+        score = 80
+    elif latency <= 500:
+        score = 70
+    else:
+        score = 60
 
     records.append({
         "LOCATION": "Australia",
         "HOSTNAME": ip,
         "PORT": int(port),
         "UPTIME": "100%",
-        "PING": "20",
+        "PING": str(latency),
         "FLAG": "AU",
         "SESSIONS": 0,
         "LINE_QUALITY": 100,
-        "SCORE": 100
+        "SCORE": score
     })
 
 with open("Records.json", "w", encoding="utf-8") as f:
