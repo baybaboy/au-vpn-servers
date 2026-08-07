@@ -1,19 +1,36 @@
-from playwright.sync_api import sync_playwright
-import re
+import requests
 import socket
 import json
 import time
 
-URL = "https://publicvpnlist.com/country/australia/"
+# ============================================================
+# PublicVPNList Australia TCP OpenVPN Scraper
+# ============================================================
+
+API_URL = "https://publicvpnlist.com/api/v1/servers"
+
+# How fresh a PublicVPNList result must be
+FRESH_WITHIN = 259200  # 72 hours
+
+# Your own connectivity test
+SOCKET_TIMEOUT = 5
+
+# Maximum servers requested per API page
+PER_PAGE = 200
+
+
+# ============================================================
+# Load fixed servers
+# ============================================================
 
 servers = []
 
-# Load fixed servers
 try:
     with open("fixed_servers.txt", "r", encoding="utf-8") as f:
         for line in f:
             server = line.strip()
-            if server:
+
+            if server and ":" in server:
                 servers.append(server)
 
     print(f"Loaded {len(servers)} fixed servers")
@@ -22,7 +39,12 @@ except FileNotFoundError:
     print("fixed_servers.txt not found")
 
 
-def check_server(host, port, timeout=5):
+# ============================================================
+# Check TCP server
+# ============================================================
+
+def check_server(host, port, timeout=SOCKET_TIMEOUT):
+
     try:
         start = time.time()
 
@@ -41,111 +63,346 @@ def check_server(host, port, timeout=5):
         return False, None
 
 
-with sync_playwright() as p:
-    browser = p.chromium.launch(headless=True)
-    page = browser.new_page()
+# ============================================================
+# Get Australia TCP OpenVPN servers from PublicVPNList
+# ============================================================
 
-    page.goto(URL, wait_until="domcontentloaded", timeout=15000)
+def get_publicvpnlist_servers():
 
-    html = page.content()
+    discovered = []
 
-    links = sorted(set(re.findall(r'/download/\d+/', html)))
-    links = ["https://publicvpnlist.com" + link for link in links]
+    page = 1
 
-    print(f"Found {len(links)} download pages")
+    print("\nDownloading Australia TCP servers from PublicVPNList...")
 
-    for link in links:
-        print(f"\nOpening: {link}")
+    while True:
+
+        params = {
+            "country": "AU",
+            "protocol": "openvpn",
+            "transport": "tcp",
+            "status": "online",
+            "fresh_within": FRESH_WITHIN,
+            "sort": "latency",
+            "order": "asc",
+            "page": page,
+            "per_page": PER_PAGE,
+            "format": "json"
+        }
 
         try:
-            page.goto(
-                link,
-                wait_until="domcontentloaded",
-                timeout=10000
+
+            response = requests.get(
+                API_URL,
+                params=params,
+                headers={
+                    "Accept": "application/json",
+                    "User-Agent": "Australia-VPN-Scraper/2.0"
+                },
+                timeout=20
             )
-        except Exception:
-            print(f"Skipping timeout: {link}")
-            continue
 
-        page_html = page.content()
+            # Rate limit
+            if response.status_code == 429:
+                print("PublicVPNList rate limit reached.")
+                print("Waiting 30 seconds...")
+                time.sleep(30)
+                continue
 
-        host = re.search(r'data-download-host="([^"]+)"', page_html)
-        port = re.search(r'data-download-port="([^"]+)"', page_html)
+            response.raise_for_status()
 
-        if not host or not port:
-            print("No server found")
-            continue
+            payload = response.json()
 
-        ip = host.group(1)
-        portnum = port.group(1)
+        except Exception as e:
 
-        servers.append(f"{ip}:{portnum}")
+            print(f"API request failed: {e}")
+            break
 
-    browser.close()
+        data = payload.get("data", [])
 
+        if not data:
+            break
+
+        print(
+            f"API page {page}: "
+            f"{len(data)} servers"
+        )
+
+        for record in data:
+
+            host = (
+                record.get("ip")
+                or record.get("hostname")
+            )
+
+            port = record.get("port")
+
+            protocol = str(
+                record.get("protocol", "")
+            ).lower()
+
+            transport = str(
+                record.get("transport", "")
+            ).lower()
+
+            country = str(
+                record.get("country_code", "")
+            ).upper()
+
+            availability = str(
+                record.get("availability_status", "")
+            ).lower()
+
+            if not host or not port:
+                continue
+
+            # Extra safety filtering
+            if country != "AU":
+                continue
+
+            if protocol != "openvpn":
+                continue
+
+            if transport != "tcp":
+                continue
+
+            # If availability is supplied, require online
+            if availability and availability != "online":
+                continue
+
+            server = f"{host}:{int(port)}"
+
+            discovered.append(server)
+
+        # Check pagination
+        meta = payload.get("meta", {})
+
+        current_page = meta.get(
+            "current_page",
+            page
+        )
+
+        last_page = meta.get(
+            "last_page"
+        )
+
+        if last_page is not None:
+
+            if current_page >= last_page:
+                break
+
+        elif len(data) < PER_PAGE:
+            break
+
+        page += 1
+
+    return discovered
+
+
+# ============================================================
+# Download current servers
+# ============================================================
+
+api_servers = get_publicvpnlist_servers()
+
+print(
+    f"\nPublicVPNList returned "
+    f"{len(api_servers)} Australia TCP servers."
+)
+
+
+# Add API servers to fixed servers
+servers.extend(api_servers)
+
+
+# ============================================================
 # Remove duplicates
-servers = sorted(set(servers))
+# ============================================================
 
-print(f"\nTesting {len(servers)} unique servers...")
+servers = sorted(
+    set(
+        s.strip()
+        for s in servers
+        if s.strip()
+    )
+)
+
+print(
+    f"Testing {len(servers)} unique servers..."
+)
+
+
+# ============================================================
+# Test servers
+# ============================================================
 
 working_servers = []
 
 for server in servers:
 
-    ip, port = server.split(":")
+    try:
 
-    print(f"Testing {ip}:{port}...")
+        host, port = server.rsplit(":", 1)
 
-    online, latency = check_server(ip, port)
+    except ValueError:
+
+        print(f"Invalid server format: {server}")
+        continue
+
+    print(
+        f"Testing {host}:{port}..."
+    )
+
+    online, latency = check_server(
+        host,
+        port
+    )
 
     if online:
-        print(f"✓ ONLINE ({latency} ms)")
-        working_servers.append((server, latency))
+
+        print(
+            f"✓ ONLINE ({latency} ms)"
+        )
+
+        working_servers.append(
+            (server, latency)
+        )
+
     else:
+
         print("✗ OFFLINE")
 
-# Fastest first
-working_servers.sort(key=lambda x: x[1])
 
+# ============================================================
+# Fastest first
+# ============================================================
+
+working_servers.sort(
+    key=lambda x: x[1]
+)
+
+
+# ============================================================
 # Save servers.txt
-with open("servers.txt", "w", encoding="utf-8") as f:
+# ============================================================
+
+with open(
+    "servers.txt",
+    "w",
+    encoding="utf-8"
+) as f:
+
     for server, latency in working_servers:
-        f.write(server + "\n")
+
+        f.write(
+            server + "\n"
+        )
+
+
+# ============================================================
+# Create Records.json
+# ============================================================
 
 records = []
 
 for server, latency in working_servers:
 
-    ip, port = server.split(":")
+    try:
+
+        ip, port = server.rsplit(":", 1)
+
+        port = int(port)
+
+    except ValueError:
+
+        continue
+
+
+    # ========================================================
+    # Score
+    # ========================================================
 
     if latency <= 100:
+
         score = 100
+
     elif latency <= 200:
+
         score = 90
+
     elif latency <= 300:
+
         score = 80
+
     elif latency <= 500:
+
         score = 70
+
     else:
+
         score = 60
 
+
     records.append({
+
         "LOCATION": "Australia",
+
         "HOSTNAME": ip,
-        "PORT": int(port),
+
+        "PORT": port,
+
         "UPTIME": "100%",
+
         "PING": str(latency),
+
         "FLAG": "AU",
+
         "SESSIONS": 0,
+
         "LINE_QUALITY": 100,
+
         "SCORE": score
+
     })
 
-with open("Records.json", "w", encoding="utf-8") as f:
-    json.dump(records, f, indent=4)
+
+# ============================================================
+# Save Records.json
+# ============================================================
+
+with open(
+    "Records.json",
+    "w",
+    encoding="utf-8"
+) as f:
+
+    json.dump(
+        records,
+        f,
+        indent=4
+    )
+
+
+# ============================================================
+# Summary
+# ============================================================
 
 print("\n===================================")
-print(f"Working servers: {len(records)}")
-print("Created servers.txt")
-print("Created Records.json")
+
+print(
+    f"Working servers: {len(records)}"
+)
+
+print(
+    "Created servers.txt"
+)
+
+print(
+    "Created Records.json"
+)
+
+print(
+    "==================================="
+)
+
 print("Done!")
