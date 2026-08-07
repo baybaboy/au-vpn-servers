@@ -70,7 +70,6 @@ def check_server(host, port, timeout=SOCKET_TIMEOUT):
 def get_publicvpnlist_servers():
 
     discovered = []
-
     page = 1
 
     print("\nDownloading Australia TCP servers from PublicVPNList...")
@@ -87,25 +86,22 @@ def get_publicvpnlist_servers():
             "order": "asc",
             "page": page,
             "per_page": PER_PAGE,
-            "format": "json"
+            "format": "json",
         }
 
         try:
-
             response = requests.get(
                 API_URL,
                 params=params,
                 headers={
                     "Accept": "application/json",
-                    "User-Agent": "Australia-VPN-Scraper/2.0"
+                    "User-Agent": "Australia-VPN-Scraper/2.0",
                 },
-                timeout=20
+                timeout=20,
             )
 
-            # Rate limit
             if response.status_code == 429:
-                print("PublicVPNList rate limit reached.")
-                print("Waiting 30 seconds...")
+                print("Rate limited. Waiting 30 seconds...")
                 time.sleep(30)
                 continue
 
@@ -114,90 +110,15 @@ def get_publicvpnlist_servers():
             payload = response.json()
 
         except Exception as e:
-
             print(f"API request failed: {e}")
             break
 
-        print(
-f"host={host} "
-f"port={port} "
-f"country={country} "
-f"protocol={protocol} "
-f"transport={transport} "
-f"availability={availability}"
-)
+        data = payload.get("data", [])
 
-server = f"{host}:{int(port)}"
-discovered.append(server)
-
-        print(
-            f"API page {page}: "
-            f"{len(data)} servers"
-        )
-
-        for record in data:
-
-            host = (
-                record.get("ip")
-                or record.get("hostname")
-            )
-
-            port = record.get("port")
-
-            protocol = str(
-                record.get("protocol", "")
-            ).lower()
-
-            transport = str(
-                record.get("transport", "")
-            ).lower()
-
-            country = str(
-                record.get("country_code", "")
-            ).upper()
-
-            availability = str(
-                record.get("availability_status", "")
-            ).lower()
-
-            if not host or not port:
-                continue
-
-            print(
-    f"host={host} "
-    f"port={port} "
-    f"country={country} "
-    f"protocol={protocol} "
-    f"transport={transport} "
-    f"availability={availability}"
-)
-
-server = f"{host}:{int(port)}"
-discovered.append(server)
-
-        # Check pagination
-        meta = payload.get("meta", {})
-
-        current_page = meta.get(
-            "current_page",
-            page
-        )
-
-        last_page = meta.get(
-            "last_page"
-        )
-
-        if last_page is not None:
-
-            if current_page >= last_page:
-                break
-
-        elif len(data) < PER_PAGE:
+        if not data:
             break
 
-        page += 1
-
-    return discovered
+        print(f"API page {page}: {len(data)} servers")
 
 
 # ============================================================
