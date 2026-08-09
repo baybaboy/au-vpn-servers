@@ -1,18 +1,22 @@
-import base64
-import csv
-import io
-import json
+from playwright.sync_api import sync_playwright
 import re
 import socket
+import json
 import time
-import requests
-from playwright.sync_api import sync_playwright
+import urllib.request
+import csv
+import io
+import base64
 
 URL = "https://publicvpnlist.com/country/australia/"
+VPN_GATE_URL = "http://www.vpngate.net/api/iphone/"
 
 servers = []
 
+
+# ------------------------------------------------------------
 # Load fixed servers
+# ------------------------------------------------------------
 try:
     with open("fixed_servers.txt", "r", encoding="utf-8") as f:
         for line in f:
@@ -26,56 +30,17 @@ except FileNotFoundError:
     print("fixed_servers.txt not found")
 
 
-def get_vpngate_au_servers():
-    """Fetches Australian TCP servers directly from VPN Gate."""
-    print("\nFetching servers from VPN Gate API...")
-    vpngate_servers = []
-    try:
-        url = "http://www.vpngate.net/api/iphone/"
-        response = requests.get(url, timeout=10)
-        response.raise_for_status()
-
-        lines = response.text.strip().splitlines()
-        valid_lines = [line for line in lines if not line.startswith("*")]
-
-        reader = csv.DictReader(io.StringIO("\n".join(valid_lines)))
-
-        for row in reader:
-            country_short = row.get("CountryShort", "").upper()
-            country_long = row.get("CountryLong", "").lower()
-
-            if country_short == "AU" or "australia" in country_long:
-                ip = row.get("IP")
-                config_b64 = row.get("OpenVPN_ConfigData_Base64")
-
-                if not ip or not config_b64:
-                    continue
-
-                # Decode OpenVPN config file to locate TCP ports
-                config_text = base64.b64decode(config_b64).decode(
-                    "utf-8", errors="ignore"
-                )
-
-                is_tcp = "proto tcp" in config_text.lower()
-                ports = re.findall(
-                    r"^remote\s+\S+\s+(\d+)", config_text, re.MULTILINE
-                )
-
-                if is_tcp and ports:
-                    vpngate_servers.append(f"{ip}:{ports[0]}")
-
-        print(f"Found {len(vpngate_servers)} TCP servers on VPN Gate")
-    except Exception as e:
-        print(f"Error fetching VPN Gate servers: {e}")
-
-    return vpngate_servers
-
-
+# ------------------------------------------------------------
+# Test TCP server
+# ------------------------------------------------------------
 def check_server(host, port, timeout=5):
     try:
         start = time.time()
 
-        sock = socket.create_connection((host, int(port)), timeout=timeout)
+        sock = socket.create_connection(
+            (host, int(port)),
+            timeout=timeout
+        )
 
         sock.close()
 
@@ -87,91 +52,301 @@ def check_server(host, port, timeout=5):
         return False, None
 
 
-# Fetch from VPN Gate
-vpngate_list = get_vpngate_au_servers()
-servers.extend(vpngate_list)
+# ------------------------------------------------------------
+# VPN Gate
+#
+# VPN Gate's API does not simply provide one universal TCP port
+# field. Its OpenVPN configuration is included as Base64 data.
+# We decode that configuration and extract TCP "remote" entries.
+# Only Australia (AU) entries are added.
+# ------------------------------------------------------------
+def load_vpngate_australia():
+    found = 0
+    added = 0
 
-# Scrape PublicVPNList via Playwright
+    try:
+        print("\nDownloading VPN Gate API...")
+
+        request = urllib.request.Request(
+            VPN_GATE_URL,
+            headers={
+                "User-Agent": "Mozilla/5.0"
+            }
+        )
+
+        with urllib.request.urlopen(request, timeout=20) as response:
+            data = response.read().decode("utf-8", errors="replace")
+
+        # VPN Gate CSV has comment/header lines before the actual CSV.
+        lines = [
+            line for line in data.splitlines()
+            if line.strip() and not line.startswith("*")
+        ]
+
+        if not lines:
+            print("VPN Gate returned no data")
+            return
+
+        # Find the CSV header.
+        header_index = None
+        for i, line in enumerate(lines):
+            if "HostName" in line and "CountryShort" in line:
+                header_index = i
+                break
+
+        if header_index is None:
+            print("Could not find VPN Gate CSV header")
+            return
+
+        csv_text = "\n".join(lines[header_index:])
+
+        reader = csv.DictReader(io.StringIO(csv_text))
+
+        for row in reader:
+            country = (row.get("CountryShort") or "").strip().upper()
+
+            if country != "AU":
+                continue
+
+            found += 1
+
+            config_b64 = (
+                row.get("OpenVPN_ConfigData_Base64") or ""
+            ).strip()
+
+            if not config_b64:
+                continue
+
+            try:
+                config = base64.b64decode(
+                    config_b64
+                ).decode("utf-8", errors="replace")
+            except Exception:
+                continue
+
+            # Look for TCP OpenVPN configurations.
+            tcp_mode = bool(
+                re.search(
+                    r"(?mi)^\s*(proto\s+tcp(?:-client)?|tcp-client)\b",
+                    config
+                )
+            )
+
+            if not tcp_mode:
+                continue
+
+            # Extract remote host + port from the OpenVPN config.
+            remotes = re.findall(
+                r"(?mi)^\s*remote\s+([^\s]+)\s+(\d+)(?:\s|$)",
+                config
+            )
+
+            # Fallback to the API IP if the config's remote is missing.
+            if not remotes:
+                ip = (row.get("IP") or "").strip()
+                if ip:
+                    # Common VPN Gate TCP port. We only use this fallback
+                    # when the config itself did not expose a remote entry.
+                    remotes = [(ip, "443")]
+
+            for host, port in remotes:
+                # Only accept a valid host/port pair.
+                try:
+                    int(port)
+                except ValueError:
+                    continue
+
+                server = f"{host}:{port}"
+
+                if server not in servers:
+                    servers.append(server)
+                    added += 1
+
+        print(
+            f"VPN Gate Australia records found: {found}"
+        )
+        print(
+            f"VPN Gate TCP endpoints added: {added}"
+        )
+
+    except Exception as e:
+        print(f"VPN Gate download failed: {e}")
+
+
+# ------------------------------------------------------------
+# Load VPN Gate Australia servers
+# ------------------------------------------------------------
+load_vpngate_australia()
+
+
+# ------------------------------------------------------------
+# PublicVPNList Australia
+# ------------------------------------------------------------
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
     page = browser.new_page()
 
-    page.goto(URL, wait_until="domcontentloaded", timeout=15000)
-
     try:
-        page.wait_for_selector('a[href*="/download/"]', timeout=15000)
-    except Exception:
-        print(
-            "Warning: no download links appeared within timeout — site may be slow or layout changed"
+        page.goto(
+            URL,
+            wait_until="domcontentloaded",
+            timeout=15000
         )
 
-    html = page.content()
-
-    links = sorted(set(re.findall(r"/download/\d+/", html)))
-    links = ["https://publicvpnlist.com" + link for link in links]
-
-    print(f"\nFound {len(links)} download pages on PublicVPNList")
-
-    for link in links:
-        print(f"Opening: {link}")
-
+        # The server table is populated by client-side JS after
+        # the initial HTML loads.
         try:
-            page.goto(link, wait_until="domcontentloaded", timeout=10000)
-            page.wait_for_selector("[data-download-host]", timeout=10000)
+            page.wait_for_selector(
+                'a[href*="/download/"]',
+                timeout=15000
+            )
         except Exception:
-            print(f"Skipping timeout: {link}")
-            continue
+            print(
+                "Warning: no download links appeared within timeout "
+                "— site may be slow or layout changed"
+            )
 
-        page_html = page.content()
+        html = page.content()
 
-        host = re.search(r'data-download-host="([^"]+)"', page_html)
-        port = re.search(r'data-download-port="([^"]+)"', page_html)
+        links = sorted(
+            set(
+                re.findall(
+                    r'/download/\d+/',
+                    html
+                )
+            )
+        )
 
-        if not host or not port:
-            print("No server found")
-            continue
+        links = [
+            "https://publicvpnlist.com" + link
+            for link in links
+        ]
 
-        ip = host.group(1)
-        portnum = port.group(1)
+        print(
+            f"Found {len(links)} PublicVPNList download pages"
+        )
 
-        servers.append(f"{ip}:{portnum}")
+        for link in links:
+            print(f"\nOpening: {link}")
 
-    browser.close()
+            try:
+                page.goto(
+                    link,
+                    wait_until="domcontentloaded",
+                    timeout=10000
+                )
 
-# Remove duplicates across all sources
+                page.wait_for_selector(
+                    '[data-download-host]',
+                    timeout=10000
+                )
+
+            except Exception:
+                print(f"Skipping timeout: {link}")
+                continue
+
+            page_html = page.content()
+
+            host = re.search(
+                r'data-download-host="([^"]+)"',
+                page_html
+            )
+
+            port = re.search(
+                r'data-download-port="([^"]+)"',
+                page_html
+            )
+
+            if not host or not port:
+                print("No server found")
+                continue
+
+            ip = host.group(1)
+            portnum = port.group(1)
+
+            servers.append(
+                f"{ip}:{portnum}"
+            )
+
+    except Exception as e:
+        print(f"PublicVPNList error: {e}")
+
+    finally:
+        browser.close()
+
+
+# ------------------------------------------------------------
+# Remove duplicates
+# ------------------------------------------------------------
 servers = sorted(set(servers))
 
-print(f"\nTesting {len(servers)} total unique servers across all sources...")
+print(
+    f"\nTesting {len(servers)} unique servers..."
+)
 
+
+# ------------------------------------------------------------
+# Test all TCP endpoints
+# ------------------------------------------------------------
 working_servers = []
 
 for server in servers:
 
-    ip, port = server.split(":")
+    try:
+        ip, port = server.rsplit(":", 1)
+    except ValueError:
+        print(f"Skipping invalid server: {server}")
+        continue
 
     print(f"Testing {ip}:{port}...")
 
-    online, latency = check_server(ip, port)
+    online, latency = check_server(
+        ip,
+        port
+    )
 
     if online:
-        print(f"✓ ONLINE ({latency} ms)")
-        working_servers.append((server, latency))
+        print(
+            f"✓ ONLINE ({latency} ms)"
+        )
+
+        working_servers.append(
+            (server, latency)
+        )
+
     else:
         print("✗ OFFLINE")
 
-# Fastest first
-working_servers.sort(key=lambda x: x[1])
 
+# ------------------------------------------------------------
+# Fastest first
+# ------------------------------------------------------------
+working_servers.sort(
+    key=lambda x: x[1]
+)
+
+
+# ------------------------------------------------------------
 # Save servers.txt
-with open("servers.txt", "w", encoding="utf-8") as f:
+# ------------------------------------------------------------
+with open(
+    "servers.txt",
+    "w",
+    encoding="utf-8"
+) as f:
+
     for server, latency in working_servers:
         f.write(server + "\n")
 
+
+# ------------------------------------------------------------
+# Build Records.json
+# ------------------------------------------------------------
 records = []
 
 for server, latency in working_servers:
 
-    ip, port = server.split(":")
+    ip, port = server.rsplit(":", 1)
 
     if latency <= 100:
         score = 100
@@ -184,25 +359,43 @@ for server, latency in working_servers:
     else:
         score = 60
 
-    records.append(
-        {
-            "LOCATION": "Australia",
-            "HOSTNAME": ip,
-            "PORT": int(port),
-            "UPTIME": "100%",
-            "PING": str(latency),
-            "FLAG": "AU",
-            "SESSIONS": 0,
-            "LINE_QUALITY": 100,
-            "SCORE": score,
-        }
+    records.append({
+        "LOCATION": "Australia",
+        "HOSTNAME": ip,
+        "PORT": int(port),
+        "UPTIME": "100%",
+        "PING": str(latency),
+        "FLAG": "AU",
+        "SESSIONS": 0,
+        "LINE_QUALITY": 100,
+        "SCORE": score
+    })
+
+
+# ------------------------------------------------------------
+# Save Records.json
+# ------------------------------------------------------------
+with open(
+    "Records.json",
+    "w",
+    encoding="utf-8"
+) as f:
+
+    json.dump(
+        records,
+        f,
+        indent=4
     )
 
-with open("Records.json", "w", encoding="utf-8") as f:
-    json.dump(records, f, indent=4)
 
+# ------------------------------------------------------------
+# Done
+# ------------------------------------------------------------
 print("\n===================================")
-print(f"Working servers: {len(records)}")
+print(
+    f"Working servers: {len(records)}"
+)
 print("Created servers.txt")
 print("Created Records.json")
 print("Done!")
+                
