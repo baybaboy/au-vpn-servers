@@ -1,21 +1,10 @@
 [
     {
         "LOCATION": "Australia",
-        "HOSTNAME": "124.183.21.206",
-        "PORT": 1999,
-        "UPTIME": "100%",
-        "PING": "140",
-        "FLAG": "AU",
-        "SESSIONS": 0,
-        "LINE_QUALITY": 100,
-        "SCORE": 90
-    },
-    {
-        "LOCATION": "Australia",
         "HOSTNAME": "125.253.56.120",
         "PORT": 1521,
         "UPTIME": "100%",
-        "PING": "141",
+        "PING": "139",
         "FLAG": "AU",
         "SESSIONS": 0,
         "LINE_QUALITY": 100,
@@ -34,8 +23,8 @@
     },
     {
         "LOCATION": "Australia",
-        "HOSTNAME": "124.170.168.113",
-        "PORT": 1222,
+        "HOSTNAME": "101.188.56.82",
+        "PORT": 1785,
         "UPTIME": "100%",
         "PING": "153",
         "FLAG": "AU",
@@ -45,8 +34,8 @@
     },
     {
         "LOCATION": "Australia",
-        "HOSTNAME": "101.188.56.82",
-        "PORT": 1785,
+        "HOSTNAME": "124.170.168.113",
+        "PORT": 1222,
         "UPTIME": "100%",
         "PING": "155",
         "FLAG": "AU",
@@ -59,7 +48,7 @@
         "HOSTNAME": "144.6.191.12",
         "PORT": 1314,
         "UPTIME": "100%",
-        "PING": "166",
+        "PING": "165",
         "FLAG": "AU",
         "SESSIONS": 0,
         "LINE_QUALITY": 100,
