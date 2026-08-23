@@ -4,7 +4,7 @@
         "HOSTNAME": "125.253.56.120",
         "PORT": 1521,
         "UPTIME": "100%",
-        "PING": "159",
+        "PING": "193",
         "FLAG": "AU",
         "SESSIONS": 0,
         "LINE_QUALITY": 100,
@@ -12,21 +12,10 @@
     },
     {
         "LOCATION": "Australia",
-        "HOSTNAME": "123.51.5.48",
-        "PORT": 1792,
+        "HOSTNAME": "101.190.102.223",
+        "PORT": 1532,
         "UPTIME": "100%",
-        "PING": "162",
-        "FLAG": "AU",
-        "SESSIONS": 0,
-        "LINE_QUALITY": 100,
-        "SCORE": 90
-    },
-    {
-        "LOCATION": "Australia",
-        "HOSTNAME": "144.6.191.12",
-        "PORT": 1314,
-        "UPTIME": "100%",
-        "PING": "171",
+        "PING": "194",
         "FLAG": "AU",
         "SESSIONS": 0,
         "LINE_QUALITY": 100,
@@ -37,10 +26,54 @@
         "HOSTNAME": "115.70.53.245",
         "PORT": 1244,
         "UPTIME": "100%",
-        "PING": "395",
+        "PING": "195",
         "FLAG": "AU",
         "SESSIONS": 0,
         "LINE_QUALITY": 100,
-        "SCORE": 70
+        "SCORE": 90
+    },
+    {
+        "LOCATION": "Australia",
+        "HOSTNAME": "61.68.63.218",
+        "PORT": 1349,
+        "UPTIME": "100%",
+        "PING": "204",
+        "FLAG": "AU",
+        "SESSIONS": 0,
+        "LINE_QUALITY": 100,
+        "SCORE": 80
+    },
+    {
+        "LOCATION": "Australia",
+        "HOSTNAME": "123.51.5.48",
+        "PORT": 1792,
+        "UPTIME": "100%",
+        "PING": "207",
+        "FLAG": "AU",
+        "SESSIONS": 0,
+        "LINE_QUALITY": 100,
+        "SCORE": 80
+    },
+    {
+        "LOCATION": "Australia",
+        "HOSTNAME": "124.171.210.241",
+        "PORT": 1599,
+        "UPTIME": "100%",
+        "PING": "209",
+        "FLAG": "AU",
+        "SESSIONS": 0,
+        "LINE_QUALITY": 100,
+        "SCORE": 80
+    },
+    {
+        "LOCATION": "Australia",
+        "HOSTNAME": "144.6.191.12",
+        "PORT": 1314,
+        "UPTIME": "100%",
+        "PING": "213",
+        "FLAG": "AU",
+        "SESSIONS": 0,
+        "LINE_QUALITY": 100,
+        "SCORE": 80
     }
 ]
