@@ -4,18 +4,7 @@
         "HOSTNAME": "110.149.193.173",
         "PORT": 1780,
         "UPTIME": "100%",
-        "PING": "144",
-        "FLAG": "AU",
-        "SESSIONS": 0,
-        "LINE_QUALITY": 100,
-        "SCORE": 90
-    },
-    {
-        "LOCATION": "Australia",
-        "HOSTNAME": "124.183.21.206",
-        "PORT": 1999,
-        "UPTIME": "100%",
-        "PING": "146",
+        "PING": "145",
         "FLAG": "AU",
         "SESSIONS": 0,
         "LINE_QUALITY": 100,
@@ -25,6 +14,17 @@
         "LOCATION": "Australia",
         "HOSTNAME": "115.70.53.245",
         "PORT": 1244,
+        "UPTIME": "100%",
+        "PING": "146",
+        "FLAG": "AU",
+        "SESSIONS": 0,
+        "LINE_QUALITY": 100,
+        "SCORE": 90
+    },
+    {
+        "LOCATION": "Australia",
+        "HOSTNAME": "125.253.56.120",
+        "PORT": 1521,
         "UPTIME": "100%",
         "PING": "147",
         "FLAG": "AU",
@@ -45,21 +45,10 @@
     },
     {
         "LOCATION": "Australia",
-        "HOSTNAME": "125.253.56.120",
-        "PORT": 1521,
-        "UPTIME": "100%",
-        "PING": "149",
-        "FLAG": "AU",
-        "SESSIONS": 0,
-        "LINE_QUALITY": 100,
-        "SCORE": 90
-    },
-    {
-        "LOCATION": "Australia",
         "HOSTNAME": "110.140.49.164",
         "PORT": 1861,
         "UPTIME": "100%",
-        "PING": "159",
+        "PING": "153",
         "FLAG": "AU",
         "SESSIONS": 0,
         "LINE_QUALITY": 100,
@@ -70,7 +59,18 @@
         "HOSTNAME": "101.176.79.94",
         "PORT": 1763,
         "UPTIME": "100%",
-        "PING": "169",
+        "PING": "165",
+        "FLAG": "AU",
+        "SESSIONS": 0,
+        "LINE_QUALITY": 100,
+        "SCORE": 90
+    },
+    {
+        "LOCATION": "Australia",
+        "HOSTNAME": "203.45.204.129",
+        "PORT": 1872,
+        "UPTIME": "100%",
+        "PING": "181",
         "FLAG": "AU",
         "SESSIONS": 0,
         "LINE_QUALITY": 100,
@@ -89,13 +89,13 @@
     },
     {
         "LOCATION": "Australia",
-        "HOSTNAME": "203.45.204.129",
-        "PORT": 1872,
+        "HOSTNAME": "124.183.21.206",
+        "PORT": 1999,
         "UPTIME": "100%",
-        "PING": "185",
+        "PING": "1962",
         "FLAG": "AU",
         "SESSIONS": 0,
         "LINE_QUALITY": 100,
-        "SCORE": 90
+        "SCORE": 60
     }
 ]
